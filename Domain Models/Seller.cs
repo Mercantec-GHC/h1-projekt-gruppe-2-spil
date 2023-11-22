@@ -17,7 +17,7 @@ public class Seller
 
     public void editListing(int listingId)
     {
-        
+        Console.WriteLine("Enter new price: ");
     }
 
     public void createLising(GameListing listing)
