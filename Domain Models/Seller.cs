@@ -22,6 +22,10 @@ public class Seller
 
     public void createLising(GameListing listing)
     {
+        if(listing != null)
+        {
+            listings.Add(listing);
+        }
 
     }
 
