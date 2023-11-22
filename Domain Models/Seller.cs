@@ -9,12 +9,15 @@ public class Seller
 
     public void deleteListing(int listingId)
     {
-
+        if(listingId.Equals(listings[listingId]))
+        {
+            listings.RemoveAt(listingId);
+        }
     }
 
     public void editListing(int listingId)
     {
-
+        
     }
 
     public void createLising(GameListing listing)
