@@ -7,6 +7,9 @@ public class Review
     public int rating { get; set; }
     public DateTime dateMade { get; set; }
 
+    public int userId { get; set; }
+    public int sellerId { get; set; }
+
     public void createReview(int reviewId, string reviewText, int rating, DateTime dateMade, int userId, int sellerId)
     {
 
@@ -16,7 +19,7 @@ public class Review
         dateMade = dateMade;
         userId = userId;
         sellerId = sellerId;
-        
+
 
     }
 }
