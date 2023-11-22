@@ -2,12 +2,12 @@
 
 public class GameListing
 {
-    int sellerID { get; set; }
-    int listingId { get; set; }
-    string condition { get; set; }
-    DateTime dateMade { get; set; }
-    bool isSold { get; set; }
-    string title { get; set; }
-    float price { get; set; }
-    List<string> pictures { get; set; }
+    public int sellerID { get; set; }
+    public int listingId { get; set; }
+    public string condition { get; set; }
+    public DateTime dateMade { get; set; }
+    public bool isSold { get; set; }
+    public string title { get; set; }
+    public float price { get; set; }
+    public List<string> pictures { get; set; }
 }
