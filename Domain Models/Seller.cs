@@ -1,10 +1,10 @@
 ﻿namespace Domain_Models;
 
-public class Seller
+public class Seller : User
 {
     public List<GameListing> listings { get; set; }
     public float rating { get; set; }
-    public List<string> reviews { get; set; }
+    public List<review> reviews { get; set; }
     public string addressLine { get; set; }
 
     public void deleteListing(int listingId)
