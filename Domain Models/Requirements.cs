@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain_Models
 {
-    internal class Requirements
+    public class Requirements
     {
         public string cpu;
         public string ram;
