@@ -18,9 +18,18 @@ public class Seller
         }
     }
 
-    public void editListing(int listingId)
+    public void editListing(int listingId, string condition, float price, List<string> pictures, string title)
     {
-        Console.WriteLine("Enter new price: ");
+        foreach(GameListing listing in listings)
+        {
+            if(listing.listingId == listingId)
+            {
+                listing.condition = condition;
+                listing.price = price;
+                listing.pictures = pictures;
+                listing.title = title;
+            }
+            }
     }
 
     public void createLising(GameListing listing)
