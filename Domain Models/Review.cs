@@ -6,7 +6,7 @@ public class Review
     public string reviewText { get; set; }
     public int rating { get; set; }
     public DateTime dateMade { get; set; }
-
+    public string title { get; set; }
     public int userId { get; set; }
     public int sellerId { get; set; }
 
