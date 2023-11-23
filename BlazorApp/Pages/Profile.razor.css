@@ -1,49 +1,56 @@
-﻿.showGameListingBox {
-    display: flex;
+﻿* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.showProfileBox {
     width: 1317px;
-    height: 2000px;
+    height: 1000px;
     flex-shrink: 0;
     border-radius: 36px;
     background: rgba(202, 121, 0, 0.65);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3%;
 }
 
-.gamePicture {
-    width: 192px;
-    height: 163px;
+.picture {
+    width: 400px;
+    height: 400px;
     flex-shrink: 0;
     border-radius: 13px;
     background: url(<path-to-image>), lightgray 50% / cover no-repeat;
+    margin-top: 5%;
+    margin-bottom: auto;
+    margin-left: 5%;
 }
 
-.gamePictureAndTitle {
+.pictureAndUsername {
     display: flex;
 }
 
-.gameTitleAndCondition {
-    display: flex;
-    width: 481px;
-    height: 122px;
-    flex-direction: column;
-    justify-content: center;
+.username {
     flex-shrink: 0;
     color: #FFF;
-    font-family: Inter;
+    font-size: 44px;
+    font-style: normal;
+    font-weight: 400;
+    margin-top: 10%;
+    margin-left: 5%;
+}
+
+.address {
+    flex-shrink: 0;
+    color: #FFF;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
-    line-height: normal;
+    margin-top: 10%;
+    margin-left: 5%;
 }
 
-.userInformationCard {
-    display: flex;
-    width: 184px;
-    height: 30px;
-    flex-direction: column;
-    justify-content: center;
+.userInformationCard {  
     flex-shrink: 0;
     color: #FFF;
-    text-align: center;
-    font-family: Inter;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -51,9 +58,24 @@
 }
 
 .seeMoreButton {
+    margin-top: 3%;
     width: 174px;
     height: 57px;
     flex-shrink: 0;
     border-radius: 10px;
     background: #D9D9D9;
+}
+
+.userInformationAndSeeMoreButton {
+    margin-top: 10%;
+    margin-left: 5%;
+}
+
+.locationIcon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-right: 5%;
+    margin-bottom: 4%;
+    fill: #FFF;
 }
