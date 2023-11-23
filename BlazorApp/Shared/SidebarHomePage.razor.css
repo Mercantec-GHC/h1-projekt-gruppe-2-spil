@@ -14,7 +14,7 @@
     top: 20%;
 }
 
-.searchbar-container{
+.searchbar-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -25,4 +25,21 @@
 
 .navbar-brand {
     font-size: 1.1rem;
+}
+
+.sideBarInformationBox {
+    width: 289px;
+    height: 635px;
+    flex-shrink: 0;
+    border-radius: 26px;
+    background: rgba(246, 201, 132, 0.26);
+    margin: auto;
+    margin-top: 10%;
+    color: #fff;
+}
+
+.profileSideBar {
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: auto;
 }
