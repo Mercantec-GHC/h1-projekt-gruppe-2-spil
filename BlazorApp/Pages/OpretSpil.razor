@@ -1,4 +1,6 @@
-﻿@page "/OpretSpil"
+﻿
+
+@page "/OpretSpil"
 
 <div class="box">
     <div class="InfoBox" float: left>
@@ -36,10 +38,14 @@
     
    
 </div>
-<div class="Image">
-    <button class="AddImage" type="button">Tilføj billede</button>
+<div class="ImageBox">
+    
+        <button class="AddImage" type="button">Tilføj billede</button>
+        <div class="AddedImage"></div>
+       
 
-</div>
+    </div>
+
 
 
 
@@ -157,7 +163,7 @@
        
     }
     
-    .AddImage{
+    .ImageBox{
         flex-direction: column;
         width: 99%;
         height: 350px;
@@ -167,12 +173,35 @@
         margin-right: auto;
         margin-top: 3%;
     }
-    
+    .AddImage{
+        width: 240px;
+        height: 60px;
+        flex-shrink: 0;
+        border-radius: 13px;
+        background: #E6E6E6;
+        margin-top: 5%;
+        margin-bottom: auto;
+        margin-left: 5%;
+        flex-direction: column;
+    }
+    .AddedImage{
+        width: 240px;
+        height: 60px;
+        flex-shrink: 0;
+        border-radius: 13px;
+        background: #E6E6E6;
+        margin-top: 5%;
+        margin-bottom: auto;
+        margin-left: 5%;
+        flex-direction: column;
+    }
 </style>
+
+
+
+
 @code {
-  
-
+   
 }
-
 
 
