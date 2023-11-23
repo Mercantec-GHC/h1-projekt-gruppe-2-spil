@@ -1,4 +1,4 @@
-﻿@page "/Opret spil"
+﻿@page "/OpretSpil"
 
 <div class="box">
     <div class="InfoBox" float: left>
@@ -33,7 +33,12 @@
 
     </div>
 
+    
    
+</div>
+<div class="Image">
+    <button class="AddImage" type="button">Tilføj billede</button>
+
 </div>
 
 
@@ -152,7 +157,16 @@
        
     }
     
-
+    .AddImage{
+        flex-direction: column;
+        width: 99%;
+        height: 350px;
+        border-radius: 36px;
+        background: rgba(202, 121, 0, 0.65);
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 3%;
+    }
     
 </style>
 @code {
