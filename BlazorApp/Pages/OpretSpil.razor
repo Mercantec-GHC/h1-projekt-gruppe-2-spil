@@ -1,31 +1,57 @@
-﻿@page "/Opret spil"
+﻿@page "/OpretSpil"
 
-<div class="InfoBox" float: left>
-    <input class=" Name" type="text" placeholder="Navn"/>
-    <input class="Condition" type="text" placeholder="Tilstand" />
-    <textarea class="Description" type="text" placeholder="Beskrivelse"  />
-    <input class="Price" type="text" placeholder="Pris"  />
-</div>
-<div class="GenreBox">
-   
-    <input class="Platform" type="Text" placeholder="Platform"/>
-    <input class="Genre" type="Text" placeholder="Genre"/>
-    <input class="Publisher" type="Text" placeholder="Publisher" />
-    <input class="Developer" type="Text" placeholder="Developer" />
-    <input class="NumberOfPlayers" type="Text" placeholder="NumberOfPlayers"/>
-    <input class="ReleaseDate" type="Text" placeholder="ReleaseDate"/>
-    <input class="AgeRating" type="Text" placeholder="AgeRating"/>
+<div class="box">
+    <div class="InfoBox" float: left>
+        <input class=" Name" type="text" placeholder="Navn" />
+        <input class="Condition" type="text" placeholder="Tilstand" />
+        <textarea class="Description" type="text" placeholder="Beskrivelse" />
+        <input class="Price" type="text" placeholder="Pris" />
 
-    <textarea class="MinimumRequirements" type="text" placeholder="Minimum Requirements" />
-    <textarea class="recommendedRequirements" type="text" placeholder="recommended Requirements" />
+
+    </div>
+    <div class="GenreBox" >
+        <div>
+            <input class="Platform" type="Text" placeholder="Platform" />
+            <input class="Genre" type="Text" placeholder="Genre" />
+            <input class="Publisher" type="Text" placeholder="Publisher" />
+            <input class="Developer" type="Text" placeholder="Developer" />
+            <input class="NumberOfPlayers" type="Text" placeholder="NumberOfPlayers" />
+            <input class="ReleaseDate" type="Text" placeholder="ReleaseDate" />
+            <input class="AgeRating" type="Text" placeholder="AgeRating" />
+
+        </div>
+        
+        <div class="req" >
+            <textarea class="MinimumRequirements" type="text" placeholder="Minimum Requirements" />
+            <textarea class="recommendedRequirements" type="text" placeholder="recommended Requirements" />
+        </div>
+        
+        
+        
+
+
+
+    </div>
+
     
+   
 </div>
+<div class="Image">
+    <button class="AddImage" type="button">Tilføj billede</button>
+
+</div>
+
+
+
 
 <style>
-    .InfoBox{
+    .box{
         display: flex;
+    }
+    .InfoBox{
+      
         flex-direction: column;
-        width: 617px;
+        width: 45%;
         height: 726px;
         
         border-radius: 36px;
@@ -33,13 +59,14 @@
         margin-left: auto;
         margin-right: auto;
         margin-top: 3%;
-        float: left;
+        
 
     }
     .Name,
     .Condition
     {
-        width: 400px;
+        
+        width: 75%;
         flex-direction: row;
         height: 60px;
         flex-shrink: 0;
@@ -52,7 +79,7 @@
 
     .Description
     {
-        width: 540px;
+        width: 75%;
         flex-direction: row;
         height: 260px;
         text-align: left;
@@ -77,10 +104,9 @@
 
     
     .GenreBox {
-        
         display: flex;
-        flex-direction: column;
-        width: 617px;
+        
+        width: 50%;
         height: 726px;
         flex-shrink: 0;
         border-radius: 36px;
@@ -89,18 +115,25 @@
         margin-right: auto;
         margin-top: 3%;
     }
+   
+    .req{
+        flex-direction:column;
+        margin-top: 2%;
+        margin-right: 5%;
+    }
 
     .MinimumRequirements,
     .recommendedRequirements {
-        width: 340px;
-        flex-direction: row;
-        height: 160px;
-        float: right;
-        vertical-align: top;
+        width: 250px;
+       margin-bottom:5%;
+        height: 260px;
+       
+        
         border-radius: 13px;
         background: #E6E6E6;
-        margin-top: 5%;
-        margin-left: 5%;
+        
+        
+       
     }
     
     .Platform,
@@ -109,19 +142,31 @@
     .Developer,
     .NumberOfPlayers,
     .ReleaseDate,
-    .AgeRating{
+    .AgeRating
+     {
         width: 240px;
         height: 60px;
         flex-shrink: 0;
         border-radius: 13px;
         background: #E6E6E6;
-        margin-top: auto;
+        margin-top: 5%;
         margin-bottom: auto;
         margin-left: 5%;
+       flex-direction:column;
+       
        
     }
     
-
+    .AddImage{
+        flex-direction: column;
+        width: 99%;
+        height: 350px;
+        border-radius: 36px;
+        background: rgba(202, 121, 0, 0.65);
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 3%;
+    }
     
 </style>
 @code {
