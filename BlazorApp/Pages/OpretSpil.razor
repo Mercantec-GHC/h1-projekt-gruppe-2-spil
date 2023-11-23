@@ -1,22 +1,86 @@
 ﻿@page "/Opret spil"
 
-
-<div class="box">
+<div class="InfoBox" float: left>
+    <input class=" Name" type="text" placeholder="Navn"/>
+    <input class="Condition" type="text" placeholder="Tilstand" />
+    <textarea class="Description" type="text" placeholder="Beskrivelse"  />
+    <input class="Price" type="text" placeholder="Pris"  />
+</div>
+<div class="GenreBox">
    
-    <input class="Platform" type="Text" />
-    <input class="Genre" type="Text" />
-    <input class="Publisher" type="Text" />
-    <input class="Developer" type="Text" />
-    <input class="NumberOfPlayers" type="Text" />
-    <input class="ReleaseDate" type="Text" />
-    <input class="AgeRating" type="Text" />
+    <input class="Platform" type="Text" placeholder="Platform"/>
+    <input class="Genre" type="Text" placeholder="Genre"/>
+    <input class="Publisher" type="Text" placeholder="Publisher" />
+    <input class="Developer" type="Text" placeholder="Developer" />
+    <input class="NumberOfPlayers" type="Text" placeholder="NumberOfPlayers"/>
+    <input class="ReleaseDate" type="Text" placeholder="ReleaseDate"/>
+    <input class="AgeRating" type="Text" placeholder="AgeRating"/>
+
+    <textarea class="MinimumRequirements" type="text" placeholder="Minimum Requirements" />
+    <textarea class="recommendedRequirements" type="text" placeholder="recommended Requirements" />
     
 </div>
 
 <style>
-    .box {
+    .InfoBox{
         display: flex;
-        width: 1217px;
+        flex-direction: column;
+        width: 617px;
+        height: 726px;
+        
+        border-radius: 36px;
+        background: rgba(202, 121, 0, 0.65);
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 3%;
+        float: left;
+
+    }
+    .Name,
+    .Condition
+    {
+        width: 400px;
+        flex-direction: row;
+        height: 60px;
+        flex-shrink: 0;
+        border-radius: 13px;
+        background: #E6E6E6;
+        margin-top: 5%;
+        
+        margin-left: 5%;
+    }
+
+    .Description
+    {
+        width: 540px;
+        flex-direction: row;
+        height: 260px;
+        text-align: left;
+        vertical-align: top;
+        border-radius: 13px;
+        background: #E6E6E6;
+        margin-top: 5%;
+        margin-left: 5%;
+        
+    }
+
+    .Price{
+        width: 100px;
+        flex-direction: row;
+        height: 40px;
+        flex-shrink: 0;
+        border-radius: 13px;
+        background: #E6E6E6;
+        margin-top: 5%;
+        margin-left: 5%;
+    }
+
+    
+    .GenreBox {
+        
+        display: flex;
+        flex-direction: column;
+        width: 617px;
         height: 726px;
         flex-shrink: 0;
         border-radius: 36px;
@@ -25,79 +89,40 @@
         margin-right: auto;
         margin-top: 3%;
     }
-    .Platform{
-         width: 240px;
-    height: 60px;
-    flex-shrink: 0;
-    border-radius: 13px;
-    background:  gray 50%;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: 5%;
-}
-    .Genre{
-        display:fles;
-        width: 240px;
-        height: 60px;
-        flex-shrink: 0;
-        border-radius: 13px;
-        background: gray 50% ;
-        margin-top: auto;
-        margin-bottom: auto;
-        margin-left: 5%;
-    }
-    .Publisher{
-        width: 240px;
-        height: 60px;
-        flex-shrink: 0;
-        border-radius: 13px;
-        background: gray 50%;
-        margin-top: auto;
-        margin-bottom: auto;
-        margin-left: 5%;
-    }
-    .Developer{
-        width: 240px;
-        height: 60px;
-        flex-shrink: 0;
-        border-radius: 13px;
-        background: gray 50% ;
-        margin-top: auto;
-        margin-bottom: auto;
-        margin-left: 5%;
-    }
-    .NumberOfPlayers{
-        width: 240px;
-        height: 60px;
-        flex-shrink: 0;
-        border-radius: 13px;
-        background: gray 50%;
-        margin-top: auto;
-        margin-bottom: auto;
-        margin-left: 5%;
-    }
-    .ReleaseDate{
-        width: 240px;
-        height: 60px;
-        flex-shrink: 0;
-        border-radius: 13px;
-        background: gray 50%;
-        margin-top: auto;
-        margin-bottom: auto;
-        margin-left: 5%;
-    }
-    ¨.AgeRating{
-        width: 240px;
-        height: 60px;
-        flex-shrink: 0;
-        border-radius: 13px;
-        background: gray 50%;
-        margin-top: auto;
-        margin-bottom: auto;
-        margin-left: 5%;
-    }
 
+    .MinimumRequirements,
+    .recommendedRequirements {
+        width: 340px;
+        flex-direction: row;
+        height: 160px;
+        float: right;
+        vertical-align: top;
+        border-radius: 13px;
+        background: #E6E6E6;
+        margin-top: 5%;
+        margin-left: 5%;
     }
+    
+    .Platform,
+    .Genre,
+    .Publisher,
+    .Developer,
+    .NumberOfPlayers,
+    .ReleaseDate,
+    .AgeRating{
+        width: 240px;
+        height: 60px;
+        flex-shrink: 0;
+        border-radius: 13px;
+        background: #E6E6E6;
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left: 5%;
+       
+    }
+    
+
+    
 </style>
 @code {
   
