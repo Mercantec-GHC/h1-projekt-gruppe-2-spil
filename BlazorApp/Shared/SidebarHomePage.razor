@@ -1,4 +1,4 @@
-﻿@inject NavigationManager NavigationManager
+﻿@inject NavigationManager MyNavigationManager
 <div class="navbar-brand">
     <h1>Gaming</h1>
 </div>
@@ -10,20 +10,19 @@
     </div>
 </div>
 <div class="sideBarInformationBox">
-@if(NavigationManager.ToBaseRelativePath(NavigationManager.Uri) == "profile")
+@if(@MyNavigationManager.Uri.Contains("profile"))
 {
 <div class="profileSideBar">
         <div class="profilSideBarPhoneNumber">
-            <p>Tlf. Nummer</p>
-            <p>12 34 56 78</p>
+            <p>Tlf. Nummer <br />
+            12 34 56 78</p>
         </div>
         <div class="ProfilSideBarEmail">
-            <p>Email</p>
-            <p>example@email.com</p>
+            <p>Email <br />example@email.com</p>
         </div>
     </div>
 }
-else if (NavigationManager.ToBaseRelativePath(NavigationManager.Uri) == "Opret Spil")
+else if (MyNavigationManager.Uri.Contains("OpretSpil"))
 {
     <div class="opretSpilSideBar">
         <div class="opretSpilPofilBillede">
