@@ -1,4 +1,5 @@
-﻿<div class="navbar-brand">
+﻿@inject NavigationManager NavigationManager
+<div class="navbar-brand">
     <h1>Gaming</h1>
 </div>
 
@@ -8,6 +9,34 @@
         <i class="fas fa-search"></i>
     </div>
 </div>
+<div class="sideBarInformationBox">
+@if(NavigationManager.ToBaseRelativePath(NavigationManager.Uri) == "profile")
+{
+<div class="profileSideBar">
+        <div class="profilSideBarPhoneNumber">
+            <p>Tlf. Nummer</p>
+            <p>12 34 56 78</p>
+        </div>
+        <div class="ProfilSideBarEmail">
+            <p>Email</p>
+            <p>example@email.com</p>
+        </div>
+    </div>
+}
+else if (NavigationManager.ToBaseRelativePath(NavigationManager.Uri) == "Opret Spil")
+{
+    <div class="opretSpilSideBar">
+        <div class="opretSpilPofilBillede">
+            <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
+            <p>ExampleUser123</p>
+        </div>
+    </div>
+}
+
+</div>
+
+
+
 
 @code {
 
