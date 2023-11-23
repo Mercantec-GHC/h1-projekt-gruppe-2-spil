@@ -1,0 +1,28 @@
+.searchbar {
+    width: 291px;
+    height: 46px;
+    flex-shrink: 0;
+    border-radius: 30px;
+    margin-left: 6%;
+    margin-top: 10%;
+}
+
+.searchbar-icon {
+    color: #CA7900;
+    position: relative;
+    right: 15%;
+    top: 20%;
+}
+
+.searchbar-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+
+.navbar-brand {
+    font-size: 1.1rem;
+}
