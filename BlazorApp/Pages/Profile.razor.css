@@ -1,0 +1,59 @@
+﻿.showGameListingBox {
+    display: flex;
+    width: 1317px;
+    height: 2000px;
+    flex-shrink: 0;
+    border-radius: 36px;
+    background: rgba(202, 121, 0, 0.65);
+}
+
+.gamePicture {
+    width: 192px;
+    height: 163px;
+    flex-shrink: 0;
+    border-radius: 13px;
+    background: url(<path-to-image>), lightgray 50% / cover no-repeat;
+}
+
+.gamePictureAndTitle {
+    display: flex;
+}
+
+.gameTitleAndCondition {
+    display: flex;
+    width: 481px;
+    height: 122px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #FFF;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.userInformationCard {
+    display: flex;
+    width: 184px;
+    height: 30px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.seeMoreButton {
+    width: 174px;
+    height: 57px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #D9D9D9;
+}
