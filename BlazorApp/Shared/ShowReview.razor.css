@@ -2,9 +2,10 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.showProfileBox {
-    width: 1150px;
-    height: 1000px;
+.showGameListingBox {
+    display: flex;
+    width: 1317px;
+    height: 226px;
     flex-shrink: 0;
     border-radius: 36px;
     background: rgba(202, 121, 0, 0.65);
@@ -13,51 +14,45 @@
     margin-top: 3%;
 }
 
-.picture {
-    width: 400px;
-    height: 500px;
+.gamePicture {
+    width: 192px;
+    height: 163px;
     flex-shrink: 0;
     border-radius: 13px;
     background: url(<path-to-image>), lightgray 50% / cover no-repeat;
-    margin-top: 5%;
+    margin-top: auto;
     margin-bottom: auto;
     margin-left: 5%;
 }
 
-.pictureAndUsername {
+.gamePictureAndTitle {
     display: flex;
 }
 
-.username {
-    flex-shrink: 0;
-    color: #FFF;
-    font-size: 44px;
-    font-style: normal;
-    font-weight: 400;
-    margin-top: 10%;
-    margin-left: 5%;
-}
-
-.address {
+.gameTitleAndCondition {
     flex-shrink: 0;
     color: #FFF;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
-    margin-left: 5%;
+    margin-top: 4%;
+    margin-left: 2%;
 }
 
-.userInformationCard {  
+.userInformationCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     flex-shrink: 0;
     color: #FFF;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    margin-bottom: 12%;
 }
 
 .seeMoreButton {
-    margin-top: 3%;
     width: 174px;
     height: 57px;
     flex-shrink: 0;
@@ -66,7 +61,8 @@
 }
 
 .userInformationAndSeeMoreButton {
-    margin-top: 10%;
+    margin-top: auto;
+    margin-bottom: auto;
     margin-left: 5%;
 }
 
@@ -77,24 +73,4 @@
     margin-right: 5%;
     margin-bottom: 4%;
     fill: #FFF;
-}
-
-.aboutMeTitle {
-    flex-shrink: 0;
-    color: #FFF;
-    font-size: 30px;
-    font-style: normal;
-    font-weight: 400;
-    margin-top: 5%;
-    margin-left: 5%;
-}
-
-.aboutMe{
-    flex-shrink: 0;
-    color: #FFF;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    margin-top: -2%;
-    margin-left: 5%;
 }
