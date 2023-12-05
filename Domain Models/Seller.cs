@@ -29,7 +29,7 @@ public class Seller : User
                 listing.pictures = pictures;
                 listing.title = title;
             }
-            }
+        }
     }
 
     public void createLising(GameListing listing)
