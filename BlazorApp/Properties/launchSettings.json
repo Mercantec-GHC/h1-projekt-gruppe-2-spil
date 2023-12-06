@@ -4,7 +4,11 @@
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_DATASOURCE": "h1-grp2-dbserver.database.windows.net",
+        "ASPNETCORE_DBUsername": "h1grp2admin",
+        "ASPNETCORE_DBPassword": "1234H1grp21234",
+        "ASPNETCORE_DBName": "H1-Grp2-Blazor-Eksamen-Database"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7023;http://localhost:5021"
@@ -13,7 +17,11 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_DATASOURCE": "h1-grp2-dbserver.database.windows.net",
+        "ASPNETCORE_DBUsername": "h1grp2admin",
+        "ASPNETCORE_DBPassword": "1234H1grp21234",
+        "ASPNETCORE_DBName": "H1-Grp2-Blazor-Eksamen-Database"
       }
     },
     "Docker": {
@@ -21,7 +29,11 @@
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
       "environmentVariables": {
-        "ASPNETCORE_URLS": "https://+:443;http://+:80"
+        "ASPNETCORE_URLS": "https://+:443;http://+:80",
+        "ASPNETCORE_DATASOURCE": "h1-grp2-dbserver.database.windows.net",
+        "ASPNETCORE_DBUsername": "h1grp2admin",
+        "ASPNETCORE_DBPassword": "1234H1grp21234",
+        "ASPNETCORE_DBName": "H1-Grp2-Blazor-Eksamen-Database"
       },
       "publishAllPorts": true,
       "useSSL": true
