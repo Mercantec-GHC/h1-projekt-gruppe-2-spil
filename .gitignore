@@ -364,3 +364,4 @@ FodyWeavers.xsd
 
 # Project specific ignores
 launchSettings.json
+appsettings.json
