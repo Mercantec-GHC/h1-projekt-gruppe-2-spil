@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Project specific ignores
+/BlazorApp/Properties/launchSettings.json
+/BlazorApp/appsettings.json

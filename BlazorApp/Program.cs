@@ -1,9 +1,10 @@
 using BlazorApp.Data;
+using BlazorApp.DataBase;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
 var builder = WebApplication.CreateBuilder(args);
-
+DataBaseConnection.DataBaseConnect();
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
