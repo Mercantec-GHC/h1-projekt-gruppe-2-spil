@@ -1,5 +1,6 @@
 using BlazorApp.Data;
 using BlazorApp.DataBase;
+using BlazorApp.Pages;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -8,7 +9,7 @@ DataBaseConnection.DataBaseConnect();
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddSingleton<WeatherForecastService>(); 
 
 var app = builder.Build();
 
