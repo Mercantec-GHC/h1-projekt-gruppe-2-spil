@@ -37,24 +37,40 @@
     <p class="GameDescription">
         Mysterious abilities are awakening inside you, drawn from a mind flayer parasite planted in your brain.
         Resist, and turn darkness against itself. Or embrace corruption, and become ultimate evil.
-
-        
-    </p>
     <p class="GameDescription">From the creators of Divinity: Original Sin 2 comes a next-generation RPG, set in the world of Dungeons & Dragons.</p>
-    <p class="MinimumReq">Minimum Requirements:</p>
-    <p class="MinimumReq">
-        Minimum:
-        Requires a 64-bit processor and operating system
         
     </p>
+
+    <div class=" ContainerReq">
+        <div class="ReqBox">
+
+            <p class="MinimumReq">Minimum Requirements:</p>
+            <p class="MinimumReq"> Minimum: Requires a 64-bit processor and operating system</p>
+
+            <p class="MinimumReq">OS: Windows 10 64-bit</p>
+            <p class="MinimumReq">  Processor: Intel I5 4690 / AMD FX 8350</p>
+            <p class="MinimumReq"> Memory: 8 GB RAM</p>
+            <p class="MinimumReq"> Graphics: Nvidia GTX 970 / RX 480 (4GB+ of VRAM)</p>
+            <p class="MinimumReq"> DirectX: Version 11</p>
+            <p class="MinimumReq"> Storage: 150 GB available space</p>
+            <p class="MinimumReq"> Additional Notes: SSD required</p>
+        </div>
+        <div class="ReqBox">
+
+            <p class="MinimumReq">Minimum Requirements:</p>
+            <p class="MinimumReq"> Minimum: Requires a 64-bit processor and operating system</p>
+
+            <p class="MinimumReq">OS: Windows 10 64-bit</p>
+            <p class="MinimumReq">  Processor: Intel I5 4690 / AMD FX 8350</p>
+            <p class="MinimumReq"> Memory: 8 GB RAM</p>
+            <p class="MinimumReq"> Graphics: Nvidia GTX 970 / RX 480 (4GB+ of VRAM)</p>
+            <p class="MinimumReq"> DirectX: Version 11</p>
+            <p class="MinimumReq"> Storage: 150 GB available space</p>
+            <p class="MinimumReq"> Additional Notes: SSD required</p>
+        </div>
+    </div>
     
-    <p class="MinimumReq">OS: Windows 10 64-bit</p>
-    <p class="MinimumReq">  Processor: Intel I5 4690 / AMD FX 8350</p>
-    <p class="MinimumReq"> Memory: 8 GB RAM</p>
-    <p class="MinimumReq"> Graphics: Nvidia GTX 970 / RX 480 (4GB+ of VRAM)</p>
-    <p class="MinimumReq"> DirectX: Version 11</p>
-    <p class="MinimumReq"> Storage: 150 GB available space</p>
-    <p class="MinimumReq"> Additional Notes: SSD required</p>
+    
 </div>
 
 
@@ -235,6 +251,24 @@
         
         
     }
+
+    .ContainerReq {
+        display: flex;
+        justify-content: space-between;
+    }
+    .ReqBox{
+       
+       
+        width: 400px;
+        height: 426px;
+        
+        background: rgba(202, 121, 0, 0.65);
+        margin-top: 3%;
+        margin-left: 5%;
+        margin-right: 5%;
+       
+    }
+    }
     .MinimumReq{
         color: #FFF;
         font-size: 20px;
@@ -242,6 +276,7 @@
         font-weight: 400;
         margin-left: 5%;
         margin-right: 5%;
+       
     }
     .RecommendedReq{
         color: #FFF;
