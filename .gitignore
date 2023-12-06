@@ -363,5 +363,5 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # Project specific ignores
-BlazorApp/Properties/launchSettings.json
-BlazorApp/appsettings.json
+/BlazorApp/Properties/launchSettings.json
+/BlazorApp/appsettings.json
