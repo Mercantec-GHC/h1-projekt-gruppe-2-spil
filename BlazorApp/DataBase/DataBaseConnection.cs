@@ -27,7 +27,7 @@ try
                     
                     connection.Open();       
 
-                    String sql = "SELECT name, collation_name FROM sys.databases";
+                    /*String sql = "SELECT name, collation_name FROM sys.databases";
 
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
@@ -38,7 +38,7 @@ try
                                 Console.WriteLine("{0} {1}", reader.GetString(0), reader.GetString(1));
                             }
                         }
-                    }                    
+                    }  */                  
                 }
             }
             catch (SqlException e)
