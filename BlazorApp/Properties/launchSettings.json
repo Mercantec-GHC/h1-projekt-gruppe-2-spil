@@ -5,10 +5,10 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPNETCORE_DATASOURCE": "2",
-        "ASPNETCORE_DBUsername": "2",
-        "ASPNETCORE_DBPassword": "2",
-        "ASPNETCORE_DBName": "2"
+        "ASPNETCORE_DATASOURCE": "3",
+        "ASPNETCORE_DBUsername": "3",
+        "ASPNETCORE_DBPassword": "3",
+        "ASPNETCORE_DBName": "3"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7023;http://localhost:5021"
@@ -18,10 +18,10 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPNETCORE_DATASOURCE": "2",
-        "ASPNETCORE_DBUsername": "2",
-        "ASPNETCORE_DBPassword": "2",
-        "ASPNETCORE_DBName": "2"
+        "ASPNETCORE_DATASOURCE": "3",
+        "ASPNETCORE_DBUsername": "3",
+        "ASPNETCORE_DBPassword": "3",
+        "ASPNETCORE_DBName": "3"
       }
     },
     "Docker": {
@@ -30,10 +30,10 @@
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
       "environmentVariables": {
         "ASPNETCORE_URLS": "https://+:443;http://+:80",
-        "ASPNETCORE_DATASOURCE": "2",
-        "ASPNETCORE_DBUsername": "2",
-        "ASPNETCORE_DBPassword": "2",
-        "ASPNETCORE_DBName": "2"
+        "ASPNETCORE_DATASOURCE": "3",
+        "ASPNETCORE_DBUsername": "3",
+        "ASPNETCORE_DBPassword": "3",
+        "ASPNETCORE_DBName": "3"
       },
       "publishAllPorts": true,
       "useSSL": true
