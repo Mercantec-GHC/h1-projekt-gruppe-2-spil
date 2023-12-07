@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.2" />
+    <ProjectReference Include="..\BlazorApp\BlazorApp.csproj" />
   </ItemGroup>
 
 </Project>
