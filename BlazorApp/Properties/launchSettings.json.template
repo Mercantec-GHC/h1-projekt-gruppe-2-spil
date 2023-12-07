@@ -1,0 +1,53 @@
+{
+    "profiles": {
+      "BlazorApp": {
+        "commandName": "Project",
+        "launchBrowser": true,
+        "environmentVariables": {
+          "ASPNETCORE_ENVIRONMENT": "Development",
+          "ASPNETCORE_DATASOURCE": "",
+          "ASPNETCORE_DBUsername": "3",
+          "ASPNETCORE_DBPassword": "3",
+          "ASPNETCORE_DBName": "3",
+          "ASPNETCORE_CONNECTIONSTRING": "isert connection string here"
+        },
+        "dotnetRunMessages": true,
+        "applicationUrl": "https://localhost:7023;http://localhost:5021"
+      },
+      "IIS Express": {
+        "commandName": "IISExpress",
+        "launchBrowser": true,
+        "environmentVariables": {
+          "ASPNETCORE_ENVIRONMENT": "Development",
+          "ASPNETCORE_DATASOURCE": "3",
+          "ASPNETCORE_DBUsername": "3",
+          "ASPNETCORE_DBPassword": "3",
+          "ASPNETCORE_DBName": "3",
+          "ASPNETCORE_CONNECTIONSTRING": "insert connection string here"
+        }
+      },
+      "Docker": {
+        "commandName": "Docker",
+        "launchBrowser": true,
+        "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+        "environmentVariables": {
+          "ASPNETCORE_URLS": "https://+:443;http://+:80",
+          "ASPNETCORE_DATASOURCE": "3",
+          "ASPNETCORE_DBUsername": "3",
+          "ASPNETCORE_DBPassword": "3",
+          "ASPNETCORE_DBName": "3",
+          "ASPNETCORE_CONNECTIONSTRING": "insert connection string her"
+        },
+        "publishAllPorts": true,
+        "useSSL": true
+      }
+    },
+    "iisSettings": {
+      "windowsAuthentication": false,
+      "anonymousAuthentication": true,
+      "iisExpress": {
+        "applicationUrl": "http://localhost:12164",
+        "sslPort": 44355
+      }
+    }
+  }
