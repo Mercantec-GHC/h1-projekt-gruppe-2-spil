@@ -5,7 +5,7 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPNETCORE_DATASOURCE": "3",
+        "ASPNETCORE_DATASOURCE": "30",
         "ASPNETCORE_DBUsername": "3",
         "ASPNETCORE_DBPassword": "3",
         "ASPNETCORE_DBName": "3"
