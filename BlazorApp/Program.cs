@@ -1,6 +1,6 @@
 using BlazorApp.Data;
-using BlazorApp.DataBase;
 using BlazorApp.Pages;
+using Domain_Models.DataBase;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
