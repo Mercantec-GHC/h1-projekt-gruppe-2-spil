@@ -86,6 +86,69 @@ namespace Domain_Models
             genres = Genres;
             gamePlatforms = GamePlatforms;
 
+            try
+            {
+
+              
+                DataBaseConnection.DataBaseConnect();
+                using (SqlConnection connection = new SqlConnection(connectionString: DataBaseConnection.ConnectionString))
+                {
+                    connection.Open();
+
+                  
+                    string checkQuery = $"SELECT COUNT(*) FROM dbo.game WHERE id = {id}";
+                    using (SqlCommand checkCommand = new SqlCommand(checkQuery, connection))
+                    {
+                        int existingCount = (int)checkCommand.ExecuteScalar();
+
+                        if (existingCount > 0)
+                        {
+                           
+                            string updateQuery = $"UPDATE dbo.game SET name = @Name, publisher = @Publisher, developer = @Developer, description = @Description, numPlayers = @NumPlayers, ageRating = @AgeRating, releaseDate = @ReleaseDate WHERE id = @ID";
+
+                            using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection))
+                            {
+                                updateCommand.Parameters.AddWithValue("@ID", id);
+                                updateCommand.Parameters.AddWithValue("@Name", name);
+                                updateCommand.Parameters.AddWithValue("@Publisher", publisher);
+                                updateCommand.Parameters.AddWithValue("@Developer", developer);
+                                updateCommand.Parameters.AddWithValue("@Description", description);
+                                updateCommand.Parameters.AddWithValue("@NumPlayers", numPlayers);
+                                updateCommand.Parameters.AddWithValue("@AgeRating", ageRating);
+                                updateCommand.Parameters.AddWithValue("@ReleaseDate", releaseDate);
+
+                                updateCommand.ExecuteNonQuery();
+                            }
+                        }
+                        else
+                        {
+                          
+                            string insertQuery = "INSERT INTO dbo.game (name, publisher, developer, description, numPlayers, ageRating, releaseDate) VALUES (@Name, @Publisher, @Developer, @Description, @NumPlayers, @AgeRating, @ReleaseDate)";
+
+                            using (SqlCommand insertCommand = new SqlCommand(insertQuery, connection))
+                            {
+                                insertCommand.Parameters.AddWithValue("@Name", name);
+                                insertCommand.Parameters.AddWithValue("@Publisher", publisher);
+                                insertCommand.Parameters.AddWithValue("@Developer", developer);
+                                insertCommand.Parameters.AddWithValue("@Description", description);
+                                insertCommand.Parameters.AddWithValue("@NumPlayers", numPlayers);
+                                insertCommand.Parameters.AddWithValue("@AgeRating", ageRating);
+                                insertCommand.Parameters.AddWithValue("@ReleaseDate", releaseDate);
+
+                                insertCommand.ExecuteNonQuery();
+                            }
+                        }
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
         }
     }
 }
+        
+    
+
