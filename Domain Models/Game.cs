@@ -9,7 +9,7 @@ using Microsoft.Data.SqlClient;
 
 namespace Domain_Models
 {
-    enum genre
+    public enum genre
     {
         Action,
         Adventure,
@@ -43,14 +43,14 @@ namespace Domain_Models
         VROnly,
         WarGame,
     }
-    enum gamePlatform
+    public enum gamePlatform
     {
         PC,
         Nintendo,
         Xbox,
         Playstaion,
     }
-    internal class Game
+    public class Game
     {
 
         public int id;
@@ -63,6 +63,8 @@ namespace Domain_Models
         public DateTime releaseDate;
         public List<genre> genres;
         public List<gamePlatform> gamePlatforms;
+        public Requirements minimumRequirements;
+        public Requirements recommendedRequirements;
 
         public void UpdateGameData(string Name,
                                    string Publisher,
@@ -84,72 +86,6 @@ namespace Domain_Models
             genres = Genres;
             gamePlatforms = GamePlatforms;
 
-
-            try
-            {
-
-                // Open the connection
-                DataBaseConnection.DataBaseConnect();
-                using (SqlConnection connection = new SqlConnection(connectionString: DataBaseConnection.ConnectionString))
-                {
-                    connection.Open();
-
-                    // Check if the game with the given ID already exists in the database
-                    string checkQuery = $"SELECT COUNT(*) FROM dbo.game WHERE id = {id}";
-                    using (SqlCommand checkCommand = new SqlCommand(checkQuery, connection))
-                    {
-                        int existingCount = (int)checkCommand.ExecuteScalar();
-
-                        if (existingCount > 0)
-                        {
-                            // Update the existing record
-                            string updateQuery = $"UPDATE dbo.game SET name = @Name, publisher = @Publisher, developer = @Developer, description = @Description, numPlayers = @NumPlayers, ageRating = @AgeRating, releaseDate = @ReleaseDate WHERE id = @ID";
-
-                            using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection))
-                            {
-                                updateCommand.Parameters.AddWithValue("@ID", id);
-                                updateCommand.Parameters.AddWithValue("@Name", name);
-                                updateCommand.Parameters.AddWithValue("@Publisher", publisher);
-                                updateCommand.Parameters.AddWithValue("@Developer", developer);
-                                updateCommand.Parameters.AddWithValue("@Description", description);
-                                updateCommand.Parameters.AddWithValue("@NumPlayers", numPlayers);
-                                updateCommand.Parameters.AddWithValue("@AgeRating", ageRating);
-                                updateCommand.Parameters.AddWithValue("@ReleaseDate", releaseDate);
-
-                                updateCommand.ExecuteNonQuery();
-                            }
-                        }
-                        else
-                        {
-                            // Insert a new record
-                            string insertQuery = "INSERT INTO dbo.game (name, publisher, developer, description, numPlayers, ageRating, releaseDate) VALUES (@Name, @Publisher, @Developer, @Description, @NumPlayers, @AgeRating, @ReleaseDate)";
-
-                            using (SqlCommand insertCommand = new SqlCommand(insertQuery, connection))
-                            {
-                                insertCommand.Parameters.AddWithValue("@Name", name);
-                                insertCommand.Parameters.AddWithValue("@Publisher", publisher);
-                                insertCommand.Parameters.AddWithValue("@Developer", developer);
-                                insertCommand.Parameters.AddWithValue("@Description", description);
-                                insertCommand.Parameters.AddWithValue("@NumPlayers", numPlayers);
-                                insertCommand.Parameters.AddWithValue("@AgeRating", ageRating);
-                                insertCommand.Parameters.AddWithValue("@ReleaseDate", releaseDate);
-
-                                insertCommand.ExecuteNonQuery();
-                            }
-                        }
-                    }
-                }
-            }
-
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-            }
         }
     }
 }
-
-
-
-
-
