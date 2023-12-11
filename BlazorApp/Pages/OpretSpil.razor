@@ -1,85 +1,91 @@
-﻿
-
-@page "/OpretSpil"
+﻿@page "/OpretSpil"
+@using Domain_Models
+@inject Seller SellerGame
+@inject Game GameService
 
 <div class="box">
     <div class="InfoBox" float: left>
-        <input class=" Name" type="text" placeholder="Navn" />
-        <input class="Condition" type="text" placeholder="Tilstand" />
-        <textarea class="Description" type="text" placeholder="Beskrivelse" />
-        <input class="Price" type="text" placeholder="Pris" />
+        <input @bind="name" class=" Name" type="text" placeholder="Navn" />
+        <input @bind="condition" class="Condition" type="text" placeholder="Tilstand" />
+        <textarea @bind="description" class="Description" type="text" placeholder="Beskrivelse" />
+        <input @bind="price" class="Price" type="text" placeholder="Pris" />
 
 
     </div>
-    <div class="GenreBox" >
+    <div class="GenreBox">
         <div>
-            <input class="Platform" type="Text" placeholder="Platform" />
-            <input class="Genre" type="Text" placeholder="Genre" />
-            <input class="Publisher" type="Text" placeholder="Publisher" />
-            <input class="Developer" type="Text" placeholder="Developer" />
-            <input class="NumberOfPlayers" type="Text" placeholder="NumberOfPlayers" />
-            <input class="ReleaseDate" type="Text" placeholder="ReleaseDate" />
-            <input class="AgeRating" type="Text" placeholder="AgeRating" />
+            <input @bind="platform" class="Platform" type="Text" placeholder="Platform" />
+            <input @bind="Genre" class="Genre" type="Text" placeholder="Genre" />
+            <input @bind="publisher" class="Publisher" type="Text" placeholder="Publisher" />
+            <input @bind="developer" class="Developer" type="Text" placeholder="Developer" />
+            <input @bind="numberOfPlayers" class="NumberOfPlayers" type="Text" placeholder="NumberOfPlayers" />
+            <input @bind="releaseDate" class="ReleaseDate" type="Text" placeholder="ReleaseDate" />
+            <input @bind="ageRating" class="AgeRating" type="Text" placeholder="AgeRating" />
 
         </div>
-        
-        <div class="req" >
-            <textarea class="MinimumRequirements" type="text" placeholder="Minimum Requirements" />
-            <textarea class="recommendedRequirements" type="text" placeholder="recommended Requirements" />
+
+        <div class="req">
+            <textarea @bind="minRequirement" class="MinimumRequirements" type="text" placeholder="Minimum Requirements" />
+            <textarea @bind="recRequirement" class="recommendedRequirements" type="text" placeholder="recommended Requirements" />
         </div>
-        
-        
-        
+
+
+
 
 
 
     </div>
 
-    
-   
+
+
 </div>
 
-    <div class="ImageBox">
-     <div>
+<div class="ImageBox">
+    <div>
         <button class="AddImage" type="button">Tilføj billede</button>
         <div class="ImageAdded">
             <div class="AddedImage"></div>
             <div class="AddedImage"></div>
             <div class="AddedImage"></div>
         </div>
-        </div>
-       
-        
-       
-
     </div>
+
+
+
+
+</div>
+
+<div class="opret">
+    <button @onclick="Opret" class="Opret" type="button">Opret</button>
+</div>
 
 
 
 
 
 <style>
-    .box{
+    .box {
         display: flex;
     }
-    .InfoBox{
-      
+
+    .InfoBox {
+
         flex-direction: column;
         width: 45%;
         height: 726px;
-        
+
         border-radius: 36px;
         background: rgba(202, 121, 0, 0.65);
         margin-left: auto;
         margin-right: auto;
         margin-top: 3%;
-        
+
 
     }
+
     .Name,
-    .Condition
-    {
-        
+    .Condition {
+
         width: 75%;
         flex-direction: row;
         height: 60px;
@@ -87,12 +93,11 @@
         border-radius: 13px;
         background: #E6E6E6;
         margin-top: 5%;
-        
+
         margin-left: 5%;
     }
 
-    .Description
-    {
+    .Description {
         width: 75%;
         flex-direction: row;
         height: 260px;
@@ -102,10 +107,10 @@
         background: #E6E6E6;
         margin-top: 5%;
         margin-left: 5%;
-        
+
     }
 
-    .Price{
+    .Price {
         width: 100px;
         flex-direction: row;
         height: 40px;
@@ -116,10 +121,10 @@
         margin-left: 5%;
     }
 
-    
+
     .GenreBox {
         display: flex;
-        
+
         width: 50%;
         height: 726px;
         flex-shrink: 0;
@@ -129,9 +134,9 @@
         margin-right: auto;
         margin-top: 3%;
     }
-   
-    .req{
-        flex-direction:column;
+
+    .req {
+        flex-direction: column;
         margin-top: 2%;
         margin-right: 5%;
     }
@@ -139,25 +144,24 @@
     .MinimumRequirements,
     .recommendedRequirements {
         width: 250px;
-       margin-bottom:5%;
+        margin-bottom: 5%;
         height: 260px;
-       
-        
+
+
         border-radius: 13px;
         background: #E6E6E6;
-        
-        
-       
+
+
+
     }
-    
+
     .Platform,
     .Genre,
     .Publisher,
     .Developer,
     .NumberOfPlayers,
     .ReleaseDate,
-    .AgeRating
-     {
+    .AgeRating {
         width: 240px;
         height: 60px;
         flex-shrink: 0;
@@ -166,18 +170,19 @@
         margin-top: 5%;
         margin-bottom: auto;
         margin-left: 5%;
-       flex-direction:column;
-       
-       
+        flex-direction: column;
+
+
     }
 
     .ImageAdded {
-        display:flex;
-        flex-direction:Row;
+        display: flex;
+        flex-direction: Row;
     }
-    .ImageBox{
-        
-        display:flex;
+
+    .ImageBox {
+
+        display: flex;
         width: 99%;
         height: 470px;
         border-radius: 36px;
@@ -185,9 +190,10 @@
         margin-left: auto;
         margin-right: auto;
         margin-top: 3%;
-        
+
     }
-    .AddImage{
+
+    .AddImage {
         width: 240px;
         height: 60px;
         flex-shrink: 0;
@@ -196,9 +202,10 @@
         margin-top: 5%;
         margin-bottom: auto;
         margin-left: 5%;
-        
+
     }
-    .AddedImage{
+
+    .AddedImage {
         width: 300px;
         height: 260px;
         flex-shrink: 0;
@@ -207,19 +214,52 @@
         margin-top: 5%;
         margin-bottom: auto;
         margin-left: 5%;
-        
-       
-    }
-    
 
-   
+
+    }
 </style>
 
 
 
 
 @code {
-   
+
+    string name { get; set; }
+    string condition { get; set; }
+    string description { get; set; }
+    float price { get; set; }
+    List<gamePlatform> platform { get; set; }
+    List<genre> Genre { get; set; }
+    string publisher { get; set; }
+    string developer { get; set; }
+    int numberOfPlayers { get; set; }
+    DateTime releaseDate { get; set; }
+    int ageRating { get; set; }
+    Requirements minRequirement { get; set; }
+    Requirements recRequirement { get; set; }
+
+
+
+    void Opret()
+    {
+        Game game = new Game();
+        GameListing gameListing = new GameListing();
+        name = game.name;
+        condition = gameListing.condition;
+        description = game.description;
+        price = gameListing.price;
+        platform = game.gamePlatforms;
+        Genre = game.genres;
+        publisher = game.publisher;
+        developer = game.developer;
+        numberOfPlayers = game.numPlayers;
+        releaseDate = game.releaseDate;
+        ageRating = game.ageRating;
+        minRequirement = game.minimumRequirements;
+        recRequirement = game.recommendedRequirements;
+        
+        SellerGame.createListing(gameListing);
+    }
+
+
 }
-
-

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain_Models
 {
-    enum genre
+    public enum genre
     {
         Action,
         Adventure,
@@ -41,14 +41,14 @@ namespace Domain_Models
         VROnly,
         WarGame,
     }
-    enum gamePlatform
+    public enum gamePlatform
     {
         PC,
         Nintendo,
         Xbox,
         Playstaion,
     }
-    internal class Game
+    public class Game
     {
 
         public int id;
@@ -61,6 +61,8 @@ namespace Domain_Models
         public DateTime releaseDate;
         public List<genre> genres;
         public List<gamePlatform> gamePlatforms;
+        public Requirements minimumRequirements;
+        public Requirements recommendedRequirements;
 
         public void UpdateGameData(string Name,
                                    string Publisher,
@@ -81,6 +83,9 @@ namespace Domain_Models
             releaseDate = ReleaseDate;
             genres = Genres;
             gamePlatforms = GamePlatforms;
+
+
+            
 
         }
     }
