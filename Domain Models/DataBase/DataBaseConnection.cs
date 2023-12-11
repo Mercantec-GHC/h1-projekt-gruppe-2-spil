@@ -7,6 +7,8 @@ public static class DataBaseConnection
 
     public static SqlConnection _connection;
 
+    public static string ConnectionString { get; internal set; }
+
     public static string InsertListing(SqlCommand cmd){
         return cmd.ExecuteNonQuery().ToString();
         
