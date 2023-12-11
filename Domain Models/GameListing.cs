@@ -8,7 +8,7 @@ public class GameListing
     public DateTime dateMade { get; set; }
     public bool isSold { get; set; }
     public string title { get; set; }
-    public float price { get; set; }
+    public decimal price { get; set; }
     public List<string> pictures { get; set; }
     internal Game game { get; set; }
 }
