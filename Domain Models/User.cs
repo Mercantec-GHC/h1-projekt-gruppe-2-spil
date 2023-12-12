@@ -63,15 +63,15 @@ namespace Domain_Models
             SqlCommand sqlcommnd = new SqlCommand($"INSERT INTO gameListing (ID, username, password, phone_number, phone_extention, ) VALUES ({userId}, {phoneNumber}, {phoneExtension}, {zipCode}, {username}, {password}, {email}, {profilePicture}, {city}, {aboutMe}, {permissions})");
         }
 
-        public void EditReview(int ReviewId, string newReviewText, int newRating, string newTitle)
+        public void EditReview(int newReviewId, string newReviewText, int newRating, string newTitle)
         {
             for(int i = 0; i < reviews.Count; i++)
             {
-                if (reviews[i].reviewId == ReviewId)
+                if (reviews[i].ReviewId == newReviewId)
                 {
-                    reviews[i].reviewText = newReviewText;
-                    reviews[i].rating = newRating;
-                    reviews[i].title = newTitle;
+                    reviews[i].ReviewText = newReviewText;
+                    reviews[i].Rating = newRating;
+                    reviews[i].Title = newTitle;
                 }
             }
         }
