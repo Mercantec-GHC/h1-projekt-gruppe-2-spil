@@ -15,7 +15,8 @@ create table Users(
 
 
 create table UserGroups(
-    groupName text primary key not null,
+    id int primary key identity(1,1),
+    groupName text not null,
     permissions text,
     createdAt datetime default getdate()
 );
@@ -23,10 +24,10 @@ create table UserGroups(
 
 create table AsignUserToGroup(
     userID int not null,
-    groupID text not null,
+    groupID int not null,
     primary key (userID, groupID),
     foreign key (userID) references Users(id) on delete cascade,
-    foreign key (groupID) references UserGroups(groupName)
+    foreign key (groupID) references UserGroups(id)
 );
 
 
@@ -43,11 +44,6 @@ create table Publisher(
 create table Developer(
     id int primary key identity(1,1),
     developerName text not null,
-);
-
-create table GamePlatform(
-    id int primary key identity(1,1),
-    platformName text not null,
 );
 
 create table GameRequirements(
@@ -67,19 +63,17 @@ create table Game(
     description text not null,
     releaseDate datetime not null,
     numberOfPlayers int not null,
-    ageRating decimal(10,2) not null,
+    rating decimal(10,2) not null,
     genre int not null,
     publisher int not null,
     developer int not null,
     minRequirementsID int not null,
     maxRequirementsID int not null,
-    platform int not null,
     foreign key (genre) references Genre(id),
     foreign key (publisher) references Publisher(id),
     foreign key (developer) references Developer(id),
     foreign key (minRequirementsID) references GameRequirements(id),
-    foreign key (maxRequirementsID) references GameRequirements(id),
-    foreign key (platform) references GamePlatform(id)
+    foreign key (maxRequirementsID) references GameRequirements(id)
 );
 
 create table GameListing(

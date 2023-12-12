@@ -18,7 +18,7 @@ namespace Domain_Models
         
        
 
-        public void editAnyListing(int listingId, string condition, decimal price, List<string> pictures, string title)
+        public void editAnyListing(int listingId, string condition, float price, List<string> pictures, string title)
         {
             foreach (GameListing listing in listings)
             {
@@ -62,15 +62,15 @@ namespace Domain_Models
 
        
 
-        public void editAnyReview(int newReviewId, string newReviewText, int newRating, string newTitle)
+        public void editAnyReview(int ReviewId, string newReviewText, int newRating, string newTitle)
         {
             for (int i = 0; i < reviews.Count; i++)
             {
-                if (reviews[i].ReviewId == newReviewId)
+                if (reviews[i].reviewId == ReviewId)
                 {
-                    reviews[i].ReviewText = newReviewText;
-                    reviews[i].Rating = newRating;
-                    reviews[i].Title = newTitle;
+                    reviews[i].reviewText = newReviewText;
+                    reviews[i].rating = newRating;
+                    reviews[i].title = newTitle;
                 }
             }
         }

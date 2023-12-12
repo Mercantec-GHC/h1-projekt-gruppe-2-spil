@@ -1,11 +1,11 @@
 ﻿@page "/OpretSpil"
 @using Domain_Models
-
-
+@inject Seller SellerGame
+@inject Game GameService
 
 <div class="box">
     <div class="InfoBox" float: left>
-        <input @bind="name" class="Name" type="text" placeholder="Navn" />
+        <input @bind="name" class=" Name" type="text" placeholder="Navn" />
         <input @bind="condition" class="Condition" type="text" placeholder="Tilstand" />
         <textarea @bind="description" class="Description" type="text" placeholder="Beskrivelse" />
         <input @bind="price" class="Price" type="text" placeholder="Pris" />
@@ -14,8 +14,8 @@
     </div>
     <div class="GenreBox">
         <div>
-            @*<input @bind="platform" class="Platform" type="Text" placeholder="Platform" />*@
-            @*<input @bind="Genre" class="Genre" type="Text" placeholder="Genre" />*@
+            <input @bind="platform" class="Platform" type="Text" placeholder="Platform" />
+            <input @bind="Genre" class="Genre" type="Text" placeholder="Genre" />
             <input @bind="publisher" class="Publisher" type="Text" placeholder="Publisher" />
             <input @bind="developer" class="Developer" type="Text" placeholder="Developer" />
             <input @bind="numberOfPlayers" class="NumberOfPlayers" type="Text" placeholder="NumberOfPlayers" />
@@ -25,18 +25,8 @@
         </div>
 
         <div class="req">
-            <input @bind="minRequirement.cpu" class="minCPU" type="text" placeholder="Minimum CPU">
-            <input @bind="minRequirement.ram" class="minRam" type="text" placeholder="Minimum RAM">
-            <input @bind="minRequirement.os" class="minOS" type="text" placeholder="Minimum OS">
-            <input @bind="minRequirement.gpu" class="minGPU" type="text" placeholder="Minimum Grafikkort">
-            <input @bind="minRequirement.diskStorage" class="minDisk" type="text" placeholder="Minimum Disk Lager">
-            <input @bind="minRequirement.directX" class="minDirectX" type="text" placeholder="Minimum DirectX">
-            <input @bind="recRequirement.cpu" class="recCPU" type="text" placeholder="Recommended CPU">
-            <input @bind="recRequirement.ram" class="recRam" type="text" placeholder="Recommended RAM">
-            <input @bind="recRequirement.os" class="recOS" type="text" placeholder="Recommended OS">
-            <input @bind="recRequirement.gpu" class="recGPU" type="text" placeholder="Recommended Grafikkort">
-            <input @bind="recRequirement.diskStorage" class="recDisk" type="text" placeholder="Recommended Disk Lager">
-            <input @bind="recRequirement.directX" class="recDirectX" type="text" placeholder="Recommended DirectX">
+            <textarea @bind="minRequirement" class="MinimumRequirements" type="text" placeholder="Minimum Requirements" />
+            <textarea @bind="recRequirement" class="recommendedRequirements" type="text" placeholder="recommended Requirements" />
         </div>
 
 
@@ -238,42 +228,37 @@
     string condition { get; set; }
     string description { get; set; }
     decimal price { get; set; }
-    //List<gamePlatform> platform { get; set; }
-    string platformSTring { get; set; }
-    //List<genre> Genre { get; set; }
-    string genreString { get; set; }
+    List<gamePlatform> platform { get; set; }
+    List<genre> Genre { get; set; }
     string publisher { get; set; }
     string developer { get; set; }
     int numberOfPlayers { get; set; }
     DateTime releaseDate { get; set; }
     int ageRating { get; set; }
-    Requirements minRequirement = new Requirements();
-    Requirements recRequirement = new Requirements();
+    Requirements minRequirement { get; set; }
+    Requirements recRequirement { get; set; }
 
 
 
     void Opret()
     {
         Game game = new Game();
-        Seller seller = new Seller();
         GameListing gameListing = new GameListing();
-        gameListing.game = game;
-        name = gameListing.game.name;
-        name = gameListing.title;
+        name = game.name;
         condition = gameListing.condition;
-        description =  gameListing.game.description;
+        description = game.description;
         price = gameListing.price;
-       // platform =  gameListing.game.gamePlatforms;
-       // Genre =  gameListing.game.genres;
-        publisher =  gameListing.game.publisher;
-        developer =  gameListing.game.developer;
-        numberOfPlayers =  gameListing.game.numPlayers;
-        releaseDate =  gameListing.game.releaseDate;
-        ageRating =  gameListing.game.ageRating;
-        minRequirement =  gameListing.game.minimumRequirements;
-        recRequirement =  gameListing.game.recommendedRequirements;
+        platform = game.gamePlatforms;
+        Genre = game.genres;
+        publisher = game.publisher;
+        developer = game.developer;
+        numberOfPlayers = game.numPlayers;
+        releaseDate = game.releaseDate;
+        ageRating = game.ageRating;
+        minRequirement = game.minimumRequirements;
+        recRequirement = game.recommendedRequirements;
         
-        seller.createListing(gameListing);
+        SellerGame.createListing(gameListing);
     }
 
 
