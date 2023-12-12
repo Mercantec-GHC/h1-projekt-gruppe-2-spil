@@ -10,5 +10,5 @@ public class GameListing
     public string title { get; set; }
     public decimal price { get; set; }
     public List<string> pictures { get; set; }
-    internal Game game { get; set; }
+    public Game game { get; set; }
 }

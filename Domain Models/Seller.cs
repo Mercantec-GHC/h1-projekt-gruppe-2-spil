@@ -1,6 +1,7 @@
 ﻿using System.Data.Common;
 using Microsoft.Data.SqlClient;
 using Domain_Models.DataBase;
+using Microsoft.Identity.Client;
 namespace Domain_Models;
 public class Seller : User
 {
@@ -22,7 +23,7 @@ public class Seller : User
         }
     }
 
-    public void editListing(int listingId, string condition, float price, List<string> pictures, string title)
+    public void editListing(int listingId, string condition, decimal price, List<string> pictures, string title)
     {
         foreach(GameListing listing in listings)
         {
@@ -43,15 +44,31 @@ public class Seller : User
         
         
         /*insert into ajsdkjas (gameName, .....)*/
-        
-        SqlCommand sqlcommnd = new SqlCommand($"INSERT INTO gameListing (seller_id, game_id, title, condition, datemade, sold) VALUES ({userId}, {listing.game.id}, {listing.title}, {listing.condition}, {listing.dateMade}, {listing.isSold})");
+        createGame(listing.game);
+        SqlCommand sqlcommnd = new SqlCommand($"INSERT INTO GameListing (seller_id, game_id, title, condition, datemade, sold) VALUES ('{userId}', '{listing.game.id}', '{listing.title}', '{listing.condition}', '{listing.dateMade}', '{listing.isSold}');");
         DataBaseConnection.InsertListing(sqlcommnd);
+        
+        
         if(listing != null)
         {
             listings.Add(listing);
         }
 
 
+    }
+
+
+    public void createGame(Game game)
+    {
+        DataBaseConnection.DataBaseConnect();
+        
+        
+        /*insert into ajsdkjas (gameName, .....)*/
+        //SqlCommand sqlcommnd = new SqlCommand($"INSERT INTO Game (gameName, genre, platform, publisher, developer, releaseDate, description) VALUES ('5', '5', '{game.developer}', '{game.releaseDate}', '{game.description}', '{game.ageRating}', '{game.numPlayers}', '{game.minimumRequirements}', '{game.recommendedRequirements}');");
+        SqlCommand sqlcommnd = new SqlCommand($"INSERT INTO Game (name, publisher, developer, releaseDate, description, ageRating, numberOfPlayers ) VALUES ('{game.name}', '{game.publisher}', '{game.developer}', '{game.releaseDate}', '{game.description}', '{game.ageRating}', '{game.numPlayers}');");
+        DataBaseConnection.InsertListing(sqlcommnd);
+
+       
     }
 
 }

@@ -58,15 +58,15 @@ namespace Domain_Models
             isOnline = IsOnline;
         }
 
-        public void EditReview(int ReviewId, string newReviewText, int newRating, string newTitle)
+        public void EditReview(int newReviewId, string newReviewText, int newRating, string newTitle)
         {
             for(int i = 0; i < reviews.Count; i++)
             {
-                if (reviews[i].reviewId == ReviewId)
+                if (reviews[i].ReviewId == newReviewId)
                 {
-                    reviews[i].reviewText = newReviewText;
-                    reviews[i].rating = newRating;
-                    reviews[i].title = newTitle;
+                    reviews[i].ReviewText = newReviewText;
+                    reviews[i].Rating = newRating;
+                    reviews[i].Title = newTitle;
                 }
             }
         }
