@@ -1,4 +1,7 @@
-﻿namespace Domain_Models;
+﻿using Domain_Models.DataBase;
+using Microsoft.Data.SqlClient;
+
+namespace Domain_Models;
 
 public class Review
 {
@@ -20,6 +23,7 @@ public class Review
         userId = UserId;
         sellerId = SellerId;
 
-
+        DataBaseConnection.DataBaseConnect();
+        SqlCommand sqlcommnd = new SqlCommand($"INSERT INTO review (ID, seller_id, title, rating, description) VALUES ();");
     }
 }
