@@ -23,7 +23,7 @@ public class Review
         userId = UserId;
         sellerId = SellerId;
 
-        DataBaseConnection.DataBaseConnect();
+        //DataBaseConnection.DataBaseConnect();
         SqlCommand sqlcommnd = new SqlCommand($"INSERT INTO review (ID, seller_id, title, rating, description) VALUES ();");
     }
 }

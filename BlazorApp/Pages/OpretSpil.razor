@@ -1,5 +1,9 @@
 ﻿@page "/OpretSpil"
 @using Domain_Models
+@using System.Data.Common;
+@using Microsoft.Data.SqlClient;
+@using Domain_Models.DataBase;
+@using Microsoft.Identity.Client;
 
 
 
@@ -272,7 +276,9 @@
         ageRating =  gameListing.game.ageRating;
         minRequirement =  gameListing.game.minimumRequirements;
         recRequirement =  gameListing.game.recommendedRequirements;
-        
+        string sqlcommnd = new string($"INSERT INTO GameListing (sellerID, gameID, title, condition, createdAt, sold, price) VALUES (1, 6, '3', 'this was made with blazor', GETDATE(), 0, 100);");
+
+        DataBaseConnection.DataBaseConnect(sqlcommnd);
         seller.createListing(gameListing);
     }
 

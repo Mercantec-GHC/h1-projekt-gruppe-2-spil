@@ -86,7 +86,7 @@ namespace Domain_Models
             genres = Genres;
             gamePlatforms = GamePlatforms;
 
-            try
+            /*try
             {
 
               
@@ -151,7 +151,7 @@ namespace Domain_Models
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
-            }
+            }*/
         }
     }
 }

@@ -6,11 +6,7 @@ public static class DataBaseConnection
 {
     public static string ConnectionString { get; internal set; }
 
-    public static string InsertListing(SqlCommand cmd)
-    {
-        return cmd.ExecuteNonQuery().ToString();
 
-    }
     public static void DataBaseConnect(string sqlCommand)
     {
         string? dbSource = System.Environment.GetEnvironmentVariable("ASPNETCORE_DATASOURCE");
