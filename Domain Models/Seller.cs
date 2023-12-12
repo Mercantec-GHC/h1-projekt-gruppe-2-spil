@@ -1,7 +1,4 @@
-﻿using System.Data.Common;
-using Microsoft.Data.SqlClient;
-using Domain_Models.DataBase;
-using Microsoft.Identity.Client;
+﻿using Domain_Models.DataBase;
 namespace Domain_Models;
 public class Seller : User
 {
@@ -45,8 +42,10 @@ public class Seller : User
         /*insert into ajsdkjas (gameName, .....)*/
         createGame(listing.game);
         listing.game.id = 6;
+        int userId = 1;
+        int isSold = 0;
         //SqlCommand sqlcommnd = new SqlCommand($"INSERT INTO GameListing (seller_id, game_id, title, condition, datemade, sold) VALUES ('{userId}', '{listing.game.id}', '{listing.title}', '{listing.condition}', '{listing.dateMade}', '{listing.isSold}');");
-        string sqlcommnd = new string($"INSERT INTO GameListing (sellerID, gameID, title, condition, createdAt, sold, price) VALUES ('{userId}', '{listing.game.id}', '{listing.title}', '{listing.condition}', '{listing.dateMade}', '{listing.isSold}, {listing.price}');");
+        string sqlcommnd = new string($"INSERT INTO GameListing (sellerID, gameID, title, condition, createdAt, sold, price) VALUES ({userId}, {listing.game.id}, {listing.title}, {listing.condition}, {listing.dateMade}, {listing.isSold}, {listing.price});");
         //string sqlcommnd = new string($"INSERT INTO GameListing (sellerID, gameID, title, condition, createdAt, sold, price) VALUES (1, 6, '3', 'this was made with blazor', GETDATE(), 0, 100);");
 
         DataBaseConnection.DataBaseConnect(sqlcommnd);
@@ -65,10 +64,10 @@ public class Seller : User
     {
         /*insert into ajsdkjas (gameName, .....)*/
         //SqlCommand sqlcommnd = new SqlCommand($"INSERT INTO Game (gameName, genre, platform, publisher, developer, releaseDate, description) VALUES ('5', '5', '{game.developer}', '{game.releaseDate}', '{game.description}', '{game.ageRating}', '{game.numPlayers}', '{game.minimumRequirements}', '{game.recommendedRequirements}');");
-        //SqlCommand sqlcommnd = new SqlCommand($"INSERT INTO Game (name, publisher, developer, releaseDate, description, ageRating, numberOfPlayers ) VALUES ('{game.name}', '{game.publisher}', '{game.developer}', '{game.releaseDate}', '{game.description}', '{game.ageRating}', '{game.numPlayers}');");
-        SqlCommand sqlcommnd = new SqlCommand($"INSERT INTO Game (name, publisher, developer, description, rating, numberOfPlayers, releaseDate, genre, minRequirementsID, maxRequirementsID) VALUES ('this was made with blazor', 1, 1, 'a', 12, 1, GETDATE(), 1, 2, 2);");
-        //DataBaseConnection.InsertListing(sqlcommnd);
-
+        string sqlcommnd = new string($"INSERT INTO Game (name, publisher, developer, description, rating, numberOfPlayers, releaseDate, genre, minRequirementsID, maxRequirementsID) VALUES ({game.name}, {game.publisher}, {game.developer}, {game.releaseDate}, {game.description}, {game.ageRating}, {game.numPlayers});");
+        DataBaseConnection.DataBaseConnect(sqlcommnd);
+        sqlcommnd = new string($"INSERT INTO Game (name, publisher, developer, description, rating, numberOfPlayers, releaseDate, genre, minRequirementsID, maxRequirementsID) VALUES ('AAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH', 1, 1, 'a', 12, 1, GETDATE(), 1, 2, 2);");
+        DataBaseConnection.DataBaseConnect(sqlcommnd);
     }
 
 }

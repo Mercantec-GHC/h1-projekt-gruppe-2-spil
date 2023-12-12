@@ -262,23 +262,23 @@
         Seller seller = new Seller();
         GameListing gameListing = new GameListing();
         gameListing.game = game;
-        name = gameListing.game.name;
-        name = gameListing.title;
-        condition = gameListing.condition;
-        description =  gameListing.game.description;
-        price = gameListing.price;
-       // platform =  gameListing.game.gamePlatforms;
-       // Genre =  gameListing.game.genres;
-        publisher =  gameListing.game.publisher;
-        developer =  gameListing.game.developer;
-        numberOfPlayers =  gameListing.game.numPlayers;
-        releaseDate =  gameListing.game.releaseDate;
-        ageRating =  gameListing.game.ageRating;
-        minRequirement =  gameListing.game.minimumRequirements;
-        recRequirement =  gameListing.game.recommendedRequirements;
-        string sqlcommnd = new string($"INSERT INTO GameListing (sellerID, gameID, title, condition, createdAt, sold, price) VALUES (1, 6, '3', 'this was made with blazor', GETDATE(), 0, 100);");
+        gameListing.game.name = name;
+        gameListing.title = name;
+        gameListing.condition = condition;
+        gameListing.game.description = description;
+        gameListing.price = price;
+        // gameListing.game.gamePlatforms = platform;
+        // gameListing.game.genres = platform;
+        gameListing.game.publisher = publisher;
+        gameListing.game.developer = developer;
+        gameListing.game.numPlayers = numberOfPlayers;
+        gameListing.game.releaseDate = releaseDate;
+        gameListing.game.ageRating = ageRating;
+        gameListing.game.minimumRequirements = minRequirement;
+        gameListing.game.recommendedRequirements = recRequirement;
+        //string sqlcommnd = new string($"INSERT INTO GameListing (sellerID, gameID, title, condition, createdAt, sold, price) VALUES (1, 6, '3', 'this was made with blazor', GETDATE(), 0, 100);");
 
-        DataBaseConnection.DataBaseConnect(sqlcommnd);
+        //DataBaseConnection.DataBaseConnect(sqlcommnd);
         seller.createListing(gameListing);
     }
 
