@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,8 +16,8 @@ namespace Domain_Models
         {
             customerID = CustomerID;
             favoritedItems = GameListings;
+            SqlCommand sqlcommnd = new SqlCommand($"INSERT INTO gameListing (customerID, FacoritedITems) VALUES ( {customerID}, {favoritedItems})");
         }
     }
-
 }
    

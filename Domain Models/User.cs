@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Domain_Models.DataBase;
+using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -56,6 +59,8 @@ namespace Domain_Models
             aboutMe = AboutMe;
             permissions = Permissions;
             isOnline = IsOnline;
+            DataBaseConnection.DataBaseConnect();
+            SqlCommand sqlcommnd = new SqlCommand($"INSERT INTO gameListing (ID, username, password, phone_number, phone_extention, ) VALUES ({userId}, {phoneNumber}, {phoneExtension}, {zipCode}, {username}, {password}, {email}, {profilePicture}, {city}, {aboutMe}, {permissions})");
         }
 
         public void EditReview(int ReviewId, string newReviewText, int newRating, string newTitle)
