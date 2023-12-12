@@ -3,44 +3,54 @@ using Microsoft.VisualBasic;
 namespace Domain_Models.DataBase;
 
 public static class DataBaseConnection
-{ 
+{
 
-    public static SqlConnection _connection;
 
-    public static string ConnectionString { get; internal set; }
 
-    public static string InsertListing(SqlCommand cmd){
+
+
+    public static string InsertListing(SqlCommand cmd)
+    {
         return cmd.ExecuteNonQuery().ToString();
-        
+
     }
-public static void DataBaseConnect(){
-    string? dbSource = System.Environment.GetEnvironmentVariable("ASPNETCORE_DATASOURCE");
-    string? dbUser = System.Environment.GetEnvironmentVariable("ASPNETCORE_DBUsername");
-    string? dbPassword = System.Environment.GetEnvironmentVariable("ASPNETCORE_DBPassword");
-    string? dbCatalog = System.Environment.GetEnvironmentVariable("ASPNETCORE_DBName");
-    string? dbConnectionString = System.Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTIONSTRING");
-try 
-            { 
-                SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+    public static void DataBaseConnect(string sqlCommand)
+    {
+        string? dbSource = System.Environment.GetEnvironmentVariable("ASPNETCORE_DATASOURCE");
+        string? dbUser = System.Environment.GetEnvironmentVariable("ASPNETCORE_DBUsername");
+        string? dbPassword = System.Environment.GetEnvironmentVariable("ASPNETCORE_DBPassword");
+        string? dbCatalog = System.Environment.GetEnvironmentVariable("ASPNETCORE_DBName");
+        string? dbConnectionString = System.Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTIONSTRING");
+        try
+        {
+            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
 
-                /*builder.DataSource = dbSource; 
-                builder.UserID = dbUser;            
-                builder.Password = dbPassword;     
-                builder.InitialCatalog = dbCatalog;*/
+            /*builder.DataSource = dbSource; 
+            builder.UserID = dbUser;            
+            builder.Password = dbPassword;     
+            builder.InitialCatalog = dbCatalog;*/
 
-                //builder.ConnectionString="Server=tcp:h1-grp2-dbserver.database.windows.net,1433;Initial Catalog=H1-Grp2-Blazor-Eksamen-Database;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;Authentication='Active Directory Default';";
-         
-                _connection = new SqlConnection(builder.ConnectionString = dbConnectionString);
+            //builder.ConnectionString="Server=tcp:h1-grp2-dbserver.database.windows.net,1433;Initial Catalog=H1-Grp2-Blazor-Eksamen-Database;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;Authentication='Active Directory Default';";
 
-                _connection.Open();
+            string _connection = dbConnectionString;
 
-                // ------------------
-            }
-            catch (SqlException e)
+            using (SqlConnection connection = new SqlConnection(_connection))
             {
-                Console.WriteLine(e.ToString());
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(sqlCommand, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
             }
-            Console.WriteLine("\nDone. Press enter.");
-            Console.ReadLine(); 
-            }
+
+            // ------------------
+        }
+        catch (SqlException e)
+        {
+            Console.WriteLine(e.ToString());
+        }
+        Console.WriteLine("\nDone. Press enter.");
+        Console.ReadLine();
+    }
 }
