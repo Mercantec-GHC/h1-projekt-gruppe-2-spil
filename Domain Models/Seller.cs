@@ -46,7 +46,7 @@ public class Seller : User
         createGame(listing.game);
         listing.game.id = 6;
         //SqlCommand sqlcommnd = new SqlCommand($"INSERT INTO GameListing (seller_id, game_id, title, condition, datemade, sold) VALUES ('{userId}', '{listing.game.id}', '{listing.title}', '{listing.condition}', '{listing.dateMade}', '{listing.isSold}');");
-        SqlCommand sqlcommnd = new SqlCommand($"INSERT INTO GameListing (sellerID, gameID, title, condition, createdAt, sold, price) VALUES ('{userId}', '{listing.game.id}', '{listing.title}', '{listing.condition}', '{listing.dateMade}', '{listing.isSold}, {listing.price}');");
+        string sqlcommnd = new string($"INSERT INTO GameListing (sellerID, gameID, title, condition, createdAt, sold, price) VALUES ('{userId}', '{listing.game.id}', '{listing.title}', '{listing.condition}', '{listing.dateMade}', '{listing.isSold}, {listing.price}');");
         //string sqlcommnd = new string($"INSERT INTO GameListing (sellerID, gameID, title, condition, createdAt, sold, price) VALUES (1, 6, '3', 'this was made with blazor', GETDATE(), 0, 100);");
 
         DataBaseConnection.DataBaseConnect(sqlcommnd);
