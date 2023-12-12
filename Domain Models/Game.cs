@@ -95,19 +95,22 @@ namespace Domain_Models
                 {
                     connection.Open();
 
-                  
+                    // Check if the specified 'id' exists in the 'dbo.game' table
                     string checkQuery = $"SELECT COUNT(*) FROM dbo.game WHERE id = {id}";
                     using (SqlCommand checkCommand = new SqlCommand(checkQuery, connection))
                     {
+                        // ExecuteScalar retrieves the count of tables with the given 'id'
                         int existingCount = (int)checkCommand.ExecuteScalar();
 
+                        // If the table exists, update it; otherwise, insert a new table
                         if (existingCount > 0)
                         {
-                           
+                            // Construct and execute the UPDATE query
                             string updateQuery = $"UPDATE dbo.game SET name = @Name, publisher = @Publisher, developer = @Developer, description = @Description, numPlayers = @NumPlayers, ageRating = @AgeRating, releaseDate = @ReleaseDate WHERE id = @ID";
 
                             using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection))
                             {
+                                // Set parameters for the UPDATE query
                                 updateCommand.Parameters.AddWithValue("@ID", id);
                                 updateCommand.Parameters.AddWithValue("@Name", name);
                                 updateCommand.Parameters.AddWithValue("@Publisher", publisher);
@@ -117,16 +120,18 @@ namespace Domain_Models
                                 updateCommand.Parameters.AddWithValue("@AgeRating", ageRating);
                                 updateCommand.Parameters.AddWithValue("@ReleaseDate", releaseDate);
 
+                                // Execute the UPDATE query
                                 updateCommand.ExecuteNonQuery();
                             }
                         }
                         else
                         {
-                          
+                            // Construct and execute the INSERT query
                             string insertQuery = "INSERT INTO dbo.game (name, publisher, developer, description, numPlayers, ageRating, releaseDate) VALUES (@Name, @Publisher, @Developer, @Description, @NumPlayers, @AgeRating, @ReleaseDate)";
 
                             using (SqlCommand insertCommand = new SqlCommand(insertQuery, connection))
                             {
+                                // Set parameters for the INSERT query
                                 insertCommand.Parameters.AddWithValue("@Name", name);
                                 insertCommand.Parameters.AddWithValue("@Publisher", publisher);
                                 insertCommand.Parameters.AddWithValue("@Developer", developer);
@@ -135,6 +140,7 @@ namespace Domain_Models
                                 insertCommand.Parameters.AddWithValue("@AgeRating", ageRating);
                                 insertCommand.Parameters.AddWithValue("@ReleaseDate", releaseDate);
 
+                                // Execute the INSERT query
                                 insertCommand.ExecuteNonQuery();
                             }
                         }
