@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.Azure;
 
 var builder = WebApplication.CreateBuilder(args);
-DataBaseConnection.DataBaseConnect();
+//DataBaseConnection.DataBaseConnect();
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();

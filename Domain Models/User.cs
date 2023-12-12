@@ -59,9 +59,9 @@ namespace Domain_Models
             aboutMe = AboutMe;
             permissions = Permissions;
             isOnline = IsOnline;
-            DataBaseConnection.DataBaseConnect();
+            //DataBaseConnection.DataBaseConnect();
             SqlCommand sqlcommnd = new SqlCommand($"INSERT INTO gameListing (ID, username, password, phone_number, phone_extention, ) VALUES ({userId}, {phoneNumber}, {phoneExtension}, {zipCode}, {username}, {password}, {email}, {profilePicture}, {city}, {aboutMe}, {permissions})");
-            DataBaseConnection.InsertListing(sqlcommnd);
+            //DataBaseConnection.InsertListing(sqlcommnd);
         }
 
         public void EditReview(int newReviewId, string newReviewText, int newRating, string newTitle)
