@@ -4,10 +4,7 @@ namespace Domain_Models.DataBase;
 
 public static class DataBaseConnection
 {
-
-
-
-
+    public static string ConnectionString { get; internal set; }
 
 
     public static void DataBaseConnect(string sqlCommand)

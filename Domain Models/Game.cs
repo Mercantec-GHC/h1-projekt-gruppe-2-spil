@@ -90,7 +90,7 @@ namespace Domain_Models
             {
 
               
-                DataBaseConnection.DataBaseConnect();
+                //DataBaseConnection.DataBaseConnect();
                 using (SqlConnection connection = new SqlConnection(connectionString: DataBaseConnection.ConnectionString))
                 {
                     connection.Open();
