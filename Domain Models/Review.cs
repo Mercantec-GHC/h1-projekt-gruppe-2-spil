@@ -22,8 +22,10 @@ public class Review
         dateMade = DateMade;
         userId = UserId;
         sellerId = SellerId;
-
+        
         //DataBaseConnection.DataBaseConnect();
         SqlCommand sqlcommnd = new SqlCommand($"INSERT INTO review (ID, seller_id, title, rating, description) VALUES ();");
+        string SqlCommand = new string($"INSERT INTO review (ID, seller_id, title, rating, description) VALUES ();");
+        DataBaseConnection.DataBaseConnect(sqlcommnd);
     }
 }
