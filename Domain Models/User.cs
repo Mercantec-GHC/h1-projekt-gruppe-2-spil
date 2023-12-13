@@ -34,15 +34,15 @@ namespace Domain_Models
             profilePicture = pictureLocation;
         }
 
-        public void updateProfile(int UserId, 
-                                  int number, 
-                                  int extension, 
-                                  int ZipCode, 
-                                  string Username, 
-                                  string Password, 
-                                  string Email, 
-                                  string ProfilePicture, 
-                                  string City,  
+        public void updateProfile(int UserId,
+                                  int number,
+                                  int extension,
+                                  int ZipCode,
+                                  string Username,
+                                  string Password,
+                                  string Email,
+                                  string ProfilePicture,
+                                  string City,
                                   string AboutMe,
                                   List<string> Permissions,
                                   bool IsOnline)
@@ -60,13 +60,81 @@ namespace Domain_Models
             permissions = Permissions;
             isOnline = IsOnline;
             //DataBaseConnection.DataBaseConnect();
-            SqlCommand sqlcommnd = new SqlCommand($"INSERT INTO gameListing (ID, username, password, phone_number, phone_extention, ) VALUES ({userId}, {phoneNumber}, {phoneExtension}, {zipCode}, {username}, {password}, {email}, {profilePicture}, {city}, {aboutMe}, {permissions})");
-            //DataBaseConnection.InsertListing(sqlcommnd);
+            string checkForPhoneNumber = $"SELECT phoneNumber FROM dbo.user WHERE phoneNumber = {phoneNumber}";
+            string checkForZipCode = $"SELECT zipCode FROM dbo.user WHERE zipCode = {zipCode}";
+            string checkForCity = $"SELECT city FROM dbo.user WHERE city = {city}";
+
+            string connectionString = System.Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTIONSTRING");
+
+            using (SqlConnection _connection = new SqlConnection(connectionString))
+            {
+                _connection.Open();
+                string CheckForDuplicate(string checkForDuplicate)
+                {
+                    string result = "";
+                    using (SqlCommand command = new SqlCommand(checkForDuplicate, _connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                result = reader[0].ToString();
+                            }
+                        }
+                    }
+                    return result;
+                }
+                if (CheckForDuplicate(checkForPhoneNumber) != $"{phoneNumber}")
+                {
+                    string sqlcommnd = $"UPDATE dbo.user SET phoneNumber = @phoneNumber WHERE ID = @userId";
+                    using(SqlCommand command = new SqlCommand(sqlcommnd, _connection))
+                    {
+                        command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
+                        command.Parameters.AddWithValue("@userId", userId);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                else if (CheckForDuplicate(checkForZipCode) != $"{zipCode}")
+                {
+                    string sqlcommnd = $"UPDATE dbo.user SET zipCode = @zipCode WHERE ID = @userId";
+                     using(SqlCommand command = new SqlCommand(sqlcommnd, _connection))
+                    {
+                        command.Parameters.AddWithValue("@zipCode", zipCode);
+                        command.Parameters.AddWithValue("@userId", userId);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                else if (CheckForDuplicate(checkForCity) != $"{city}")
+                {
+                    string sqlcommnd = $"UPDATE dbo.user SET city = @city WHERE ID = @userId";
+                     using(SqlCommand command = new SqlCommand(sqlcommnd, _connection))
+                    {
+                        command.Parameters.AddWithValue("@city", city);
+                        command.Parameters.AddWithValue("@userId", userId);
+                        command.ExecuteNonQuery();
+                    }
+
+                }
+                else
+                {
+                    string sqlcommnd = $"UPDATE dbo.user SET phoneNumber = @phoneNumber, zipCode = @zipCode, city = @city WHERE ID = @userId";
+                     using(SqlCommand command = new SqlCommand(sqlcommnd, _connection))
+                    {
+                        command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
+                        command.Parameters.AddWithValue("@zipCode", zipCode);
+                        command.Parameters.AddWithValue("@city", city);
+                        command.Parameters.AddWithValue("@userId", userId);
+                        command.ExecuteNonQuery();
+                    }
+                }
+
+            }
+
         }
 
         public void EditReview(int newReviewId, string newReviewText, int newRating, string newTitle)
         {
-            for(int i = 0; i < reviews.Count; i++)
+            for (int i = 0; i < reviews.Count; i++)
             {
                 if (reviews[i].ReviewId == newReviewId)
                 {
@@ -80,6 +148,6 @@ namespace Domain_Models
             //DataBaseConnection.InsertListing(sqlcommnd);
         }
 
-        
+
     }
 }
