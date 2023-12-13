@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
@@ -72,6 +73,22 @@ namespace Domain_Models
                     reviews[i].Rating = newRating;
                     reviews[i].Title = newTitle;
                 }
+            }
+
+            string connectionString = System.Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTIONSTRING");
+            using (SqlConnection _connection = new SqlConnection(connectionString))
+            {
+                _connection.Open();
+                string sqlcommnd = $"UPDATE dbo.review SET ReviewText = @ReviewText, Title = @newTitle, Rating = @newRating WHERE ID = @newReviewId";
+                using (SqlCommand command = new SqlCommand(sqlcommnd, _connection))
+                {
+                    command.Parameters.AddWithValue("@ReviewText", newReviewText);
+                    command.Parameters.AddWithValue("@newTitle", newTitle);
+                    command.Parameters.AddWithValue("@newRating", newRating);
+                    command.Parameters.AddWithValue("@newReviewId", newReviewId);
+                    command.ExecuteNonQuery();
+                }
+                _connection.Close();
             }
         }
     }
