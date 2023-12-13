@@ -61,8 +61,10 @@ namespace Domain_Models
         public int numPlayers;
         public int ageRating;
         public DateTime releaseDate;
-        public List<genre> genres;
-        public List<gamePlatform> gamePlatforms;
+        //public List<genre> genres;
+        public string genres;
+        //public List<gamePlatform> gamePlatforms;
+        public string gamePlatforms;
         public Requirements minimumRequirements;
         public Requirements recommendedRequirements;
 
@@ -74,8 +76,8 @@ namespace Domain_Models
                                    int NumPlayers,
                                    int AgeRating,
                                    DateTime ReleaseDate,
-                                    List<genre> Genres,
-                                    List<gamePlatform> GamePlatforms)
+                                   string Genres,
+                                   string GamePlatforms)
         {
             name = Name;
             publisher = Publisher;
