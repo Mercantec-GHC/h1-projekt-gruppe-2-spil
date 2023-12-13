@@ -9,18 +9,50 @@ using System.Threading.Tasks;
 
 namespace Domain_Models
 {
-    internal class Favorites
+    public class Favorites
     {
         public int customerID;
         public List<GameListing> favoritedItems;
-        public void UpdateFavorites(GameListing listing, int CustomerID, List<GameListing> GameListings)
+        public void addFavorites(GameListing listing, int CustomerID )
         {
             customerID = CustomerID;
-            favoritedItems = GameListings;
+            favoritedItems.Add(listing);
+            
+          
 
-            //DataBaseConnection.DataBaseConnect();
-            SqlCommand sqlcommnd = new SqlCommand($"INSERT INTO gameListing (seller_id, game_id, title, condition, datemade, sold) VALUES ({listing.game.id}, {listing.title}, {listing.condition}, {listing.dateMade}, {listing.isSold})");
-            //DataBaseConnection.InsertListing(sqlcommnd);
+             string connectionString = System.Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTIONSTRING");
+            using(SqlConnection _connection = new SqlConnection(connectionString)){
+                 _connection.Open();
+                string sqlcommnd = $"INSERT INTO dbo.Favorites (customerID, gameID) VALUES (@customerID, @gameID)";
+                using(SqlCommand command = new SqlCommand(sqlcommnd, _connection))
+                {
+                    command.Parameters.AddWithValue("@customerID", customerID);
+                    command.Parameters.AddWithValue("@gameID", listing.listingId);
+                    command.ExecuteNonQuery();
+                }
+                _connection.Close();
+            }
+
+        }
+        public void deleteFavorites(GameListing listing, int CustomerID )
+        {
+            customerID = CustomerID;
+            favoritedItems.Remove(listing);
+            
+          
+
+             string connectionString = System.Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTIONSTRING");
+            using(SqlConnection _connection = new SqlConnection(connectionString)){
+                 _connection.Open();
+                string sqlcommnd = $"DELETE FROM dbo.Favorites WHERE customerID = @customerID AND gameID = @gameID";
+                using(SqlCommand command = new SqlCommand(sqlcommnd, _connection))
+                {
+                    command.Parameters.AddWithValue("@customerID", customerID);
+                    command.Parameters.AddWithValue("@gameID", listing.listingId);
+                    command.ExecuteNonQuery();
+                }
+                _connection.Close();
+            }
 
         }
     }
