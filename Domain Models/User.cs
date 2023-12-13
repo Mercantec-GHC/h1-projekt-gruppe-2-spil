@@ -75,9 +75,9 @@ namespace Domain_Models
                     reviews[i].Title = newTitle;
                 }
             }
-            DataBaseConnection.DataBaseConnect();
+            //DataBaseConnection.DataBaseConnect();
             SqlCommand sqlcommnd = new SqlCommand($"UPDATE dbo.review SET ReviewText = @ReviewText, Title = @newTitle, Rating = @newRating ");
-            DataBaseConnection.InsertListing(sqlcommnd);
+            //DataBaseConnection.InsertListing(sqlcommnd);
         }
 
         
