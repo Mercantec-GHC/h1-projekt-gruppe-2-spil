@@ -16,13 +16,13 @@ public class Review
     public void createReview(int reviewId, string reviewText, int rating, DateTime dateMade, string title, int userId, int sellerId)
     {
 
-        reviewId = ReviewId;
-        reviewText = ReviewText;
-        rating = Rating;
-        dateMade = DateMade;
-        title = Title;
-        userId = UserId;
-        sellerId = SellerId;
+        ReviewId = reviewId;
+        ReviewText = reviewText;
+        Rating = rating;
+        DateMade = dateMade;
+        Title = title;
+        UserId = userId;
+        SellerId = sellerId;
 
         string connectionString = System.Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTIONSTRING");
 
@@ -30,7 +30,7 @@ public class Review
         {
             connection.Open();
 
-            string sql = "INSERT INTO review (UserId, seller_id, title, rating, description, DateMade, ReviewId) values @UserId, @seller_id, @title, @rating, @description, @DateMade, @ReviewId";
+            string sql = "INSERT INTO review (UserId, seller_id, title, rating, description, DateMade, ReviewId) values (@UserId, @seller_id, @title, @rating, @description, @DateMade, @ReviewId)";
             using (SqlCommand command = new SqlCommand(sql, connection))
             {
                 command.Parameters.AddWithValue("UserId", userId);
@@ -43,6 +43,7 @@ public class Review
 
                 command.ExecuteNonQuery();
             }
+            connection.Close();
         }
        
         {
@@ -50,7 +51,7 @@ public class Review
         }
         //DataBaseConnection.DataBaseConnect();
 
-        SqlCommand sqlcommnd = new SqlCommand($"INSERT INTO review (UserId, seller_id, title, rating, description, DateMade, ReviewId) VALUES ({userId}, {sellerId}, {reviewText}, {rating}, {dateMade}, {reviewId});");
+        //SqlCommand sqlcommnd = new SqlCommand($"INSERT INTO review (UserId, seller_id, title, rating, description, DateMade, ReviewId) VALUES ({userId}, {sellerId}, {reviewText}, {rating}, {dateMade}, {reviewId});");
 
         //SqlCommand sqlcommnd = new SqlCommand($"INSERT INTO review (ID, seller_id, title, rating, description) VALUES ();");
         
