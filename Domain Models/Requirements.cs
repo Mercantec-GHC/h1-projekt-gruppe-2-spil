@@ -9,6 +9,7 @@ namespace Domain_Models
 {
     public class Requirements
     {
+        public int id;
         public string cpu;
         public string ram;
         public string os;

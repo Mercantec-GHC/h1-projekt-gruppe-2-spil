@@ -66,6 +66,7 @@ namespace Domain_Models
         public Requirements minimumRequirements;
         public Requirements recommendedRequirements;
 
+
         public void UpdateGameData(string Name,
                                    string Publisher,
                                    string Developer,
