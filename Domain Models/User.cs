@@ -1,4 +1,4 @@
-﻿using Domain_Models.DataBase;
+using Domain_Models.DataBase;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
