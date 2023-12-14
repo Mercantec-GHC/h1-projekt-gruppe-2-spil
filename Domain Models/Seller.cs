@@ -113,13 +113,13 @@ public class Seller : User
             using (SqlCommand command = new SqlCommand(sql, connection))
             {
                 command.Parameters.AddWithValue("@name", game.name);
-                command.Parameters.AddWithValue("@publisher", publisher);
-                command.Parameters.AddWithValue("@developer", developer);
+                command.Parameters.AddWithValue("@publisher", game.publisher);
+                command.Parameters.AddWithValue("@developer", game.developer);
                 command.Parameters.AddWithValue("@description", game.description);
                 command.Parameters.AddWithValue("@rating", game.ageRating);
                 command.Parameters.AddWithValue("@numPlayers", game.numPlayers);
                 command.Parameters.AddWithValue("@releaseDate", DateTime.Now);
-                command.Parameters.AddWithValue("@genreID", genres);
+                command.Parameters.AddWithValue("@genreID", game.genres);
                 command.Parameters.AddWithValue("@minReqID", game.minimumRequirements.id);
                 command.Parameters.AddWithValue("@recReqID", game.recommendedRequirements.id);
 
