@@ -77,7 +77,7 @@ public class Seller : User
                 command.Parameters.AddWithValue("@gameID", listing.game.id);
                 command.Parameters.AddWithValue("@title", listing.title);
                 command.Parameters.AddWithValue("@condition", listing.condition);
-                command.Parameters.AddWithValue("@createdAt", DateTime.Now);
+                command.Parameters.AddWithValue("@createdAt", listing.dateMade);
                 command.Parameters.AddWithValue("@sold", listing.isSold);
                 command.Parameters.AddWithValue("@price", listing.price);
 
@@ -141,6 +141,7 @@ public class Seller : User
         DataBaseConnection.DataBaseConnect(sqlcommnd);
         sqlcommnd = new string($"INSERT INTO Game (name, publisher, developer, description, rating, numberOfPlayers, releaseDate, genre, minRequirementsID, maxRequirementsID) VALUES ('AAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH', 1, 1, 'a', 12, 1, GETDATE(), 1, 2, 2);");
         DataBaseConnection.DataBaseConnect(sqlcommnd);*/
+        string ConnectionString = System.Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTIONSTRING");
 
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
