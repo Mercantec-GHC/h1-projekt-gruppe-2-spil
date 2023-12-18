@@ -119,7 +119,7 @@ public class Seller : User
                 command.Parameters.AddWithValue("@rating", game.ageRating);
                 command.Parameters.AddWithValue("@numPlayers", game.numPlayers);
                 command.Parameters.AddWithValue("@releaseDate", DateTime.Now);
-                command.Parameters.AddWithValue("@genreID", game.genres);
+                command.Parameters.AddWithValue("@genreID", genres);
                 command.Parameters.AddWithValue("@minReqID", game.minimumRequirements.id);
                 command.Parameters.AddWithValue("@recReqID", game.recommendedRequirements.id);
 

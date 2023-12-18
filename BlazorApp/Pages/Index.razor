@@ -1,10 +1,36 @@
 ﻿@page "/"
+@using Domain_Models.DataBase;
+@using Domain_Models;
+@using Microsoft.Data.SqlClient;
+@using System.Diagnostics;
+@using System.Reflection;
 
 <PageTitle>Index</PageTitle>
 
 
-<ShowGamelistings />
+@foreach (GameListing listing in gameListings)
+    {
+        <ShowGamelistings gameListing="listing"/>
+    }
 
-<ShowGamelistings />
 
-<ShowGamelistings />
+@code {
+    List<GameListing> gameListings = new List<GameListing>();
+    GameListing hi = new GameListing();
+
+    void makeList()
+    {
+        gameListings = hi.GetGameListings();
+    }
+
+    protected override void OnInitialized()
+    {
+        makeList();
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+    }
+}
