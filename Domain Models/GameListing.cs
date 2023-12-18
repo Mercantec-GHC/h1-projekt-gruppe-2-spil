@@ -11,4 +11,7 @@ public class GameListing
     public decimal price { get; set; }
     public List<string> pictures { get; set; }
     public Game game { get; set; }
+    
 }
+
+
