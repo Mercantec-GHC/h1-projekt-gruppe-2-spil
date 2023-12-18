@@ -1,37 +1,40 @@
-<<<<<<< HEAD
-﻿@page "/"
+@page "/"
 @using Domain_Models.DataBase;
 @using Domain_Models;
 @using Microsoft.Data.SqlClient;
 @using System.Diagnostics;
 @using System.Reflection;
-=======
-﻿
-@page "/"
->>>>>>> e38023fb93b8c5f7b4ddad5b7aa2e9edea2b9b6a
 
 <PageTitle>Index</PageTitle>
 
 
 @foreach (GameListing listing in gameListings)
+{
+    foreach (Seller seller in sellers)
     {
-        <ShowGamelistings gameListing="listing"/>
+        if (listing.sellerID == seller.userId)
+        {
+            <ShowGamelistings gameListing="listing" seller="seller" />
+        }
     }
+}
 
 
-<<<<<<< HEAD
 @code {
     List<GameListing> gameListings = new List<GameListing>();
-    GameListing hi = new GameListing();
+    List<Seller> sellers = new List<Seller>();
+    GameListing displayListing = new GameListing();
+    Seller seller = new Seller();
 
-    void makeList()
+    void makeLists()
     {
-        gameListings = hi.GetGameListings();
+        gameListings = displayListing.GetGameListings();
+        sellers = seller.GetSellers();
     }
 
     protected override void OnInitialized()
     {
-        makeList();
+        makeLists();
     }
 
     protected override void OnAfterRender(bool firstRender)
@@ -39,10 +42,4 @@
         base.OnAfterRender(firstRender);
 
     }
-=======
-<ShowGamelistings />
-
-@code{
-    
->>>>>>> e38023fb93b8c5f7b4ddad5b7aa2e9edea2b9b6a
 }

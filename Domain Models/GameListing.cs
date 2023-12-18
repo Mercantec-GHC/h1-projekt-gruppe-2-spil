@@ -13,7 +13,6 @@ public class GameListing
     public decimal price { get; set; }
     public List<string?> pictures { get; set; }
     public Game game { get; set; }
-<<<<<<< HEAD
 
     public List<GameListing> GetGameListings()
     {
@@ -23,16 +22,20 @@ public class GameListing
         {
             connection.Open();
 
-            string getgameID = "SELECT * FROM GameListing";
+            string getgameID = "SELECT * FROM GameListing INNER JOIN Users on Users.id = GameListing.sellerID";
             using (SqlCommand command = new SqlCommand(getgameID, connection))
             {
                 SqlDataReader reader = command.ExecuteReader();
-
+                    
                 while (reader.Read())
                 {
                     GameListing listing = new GameListing();
 
+
+                    listing.sellerID = (Int32)reader["listingID"];
                     listing.price = (decimal)reader["price"];
+                    listing.condition = reader["condition"].ToString();
+                    listing.title = reader["title"].ToString();
 
                     listings.Add(listing);
                 }
@@ -40,9 +43,6 @@ public class GameListing
         }
         return listings;
     }
-=======
-    
->>>>>>> e38023fb93b8c5f7b4ddad5b7aa2e9edea2b9b6a
 }
 
 

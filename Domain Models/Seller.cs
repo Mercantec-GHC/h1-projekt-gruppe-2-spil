@@ -170,4 +170,33 @@ public class Seller : User
         }
     }
 
+
+    public List<Seller> GetSellers()
+    {
+        List<Seller> sellers = new List<Seller>();
+        string ConnectionString = System.Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTIONSTRING");
+        using (SqlConnection connection = new SqlConnection(ConnectionString))
+        {
+            connection.Open();
+
+            string getgameID = "SELECT * FROM GameListing INNER JOIN Users on Users.id = GameListing.sellerID";
+            using (SqlCommand command = new SqlCommand(getgameID, connection))
+            {
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Seller seller = new Seller();
+
+
+                    seller.userId = (Int32)reader["listingID"];
+                    seller.username = reader["username"].ToString();
+                    seller.city = reader["city"].ToString();
+
+                    sellers.Add(seller);
+                }
+            }
+        }
+        return sellers;
+    }
 }

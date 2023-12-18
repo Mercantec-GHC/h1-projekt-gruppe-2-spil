@@ -40,8 +40,9 @@
 
 .userInformationCard {
     display: flex;
+    width: 100%;
     flex-direction: column;
-    justify-content: center;
+    justify-content: right;
     flex-shrink: 0;
     color: #FFF;
     font-size: 20px;
@@ -49,6 +50,7 @@
     font-weight: 400;
     line-height: normal;
     margin-bottom: 12%;
+    margin-right: 3%;
 }
 
 .seeMoreButton {
