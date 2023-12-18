@@ -4,7 +4,8 @@
 </div>
 
 <div class="searchbar-container">
-    <input class="searchbar" type="text" placeholder="Søg efter en vare" />
+    <input  class="searchbar" type="text" placeholder="Søg efter en vare" />
+    <button @onclick="search" class="Submit" type="submit"></button>
     <div class="searchbar-icon">
         <i class="fas fa-search"></i>
     </div>
@@ -37,7 +38,38 @@ else if (MyNavigationManager.Uri.Contains("OpretSpil"))
 
 
 
-
+@using Microsoft.Data.SqlClient;
+@using System.Text;
+@using Domain_Models.DataBase;
+@using System.Configuration;
+@using System.Data;
 @code {
+    
+    
 
+    private void search()
+    {
+
+        string ConnectionString = System.Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTIONSTRING");
+        using (SqlConnection _connection = new SqlConnection(ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = _connection;   
+
+            StringBuilder sbCommand = new StringBuilder("Select * from GameListing");
+            
+            sbCommand.Append("where title=@title");
+            SqlParameter param = new SqlParameter("@title", SqlDbType.VarChar);
+            cmd.Parameters.Add(param);
+
+            cmd.CommandText = sbCommand.ToString();
+            cmd.CommandType = CommandType.Text;
+
+            _connection.Open();
+            //SqlDataReader rdr = cmd.ExecuteReader();
+            
+        }
+
+    }
+    
 }
