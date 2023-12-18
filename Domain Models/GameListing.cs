@@ -13,6 +13,7 @@ public class GameListing
     public decimal price { get; set; }
     public List<string?> pictures { get; set; }
     public Game game { get; set; }
+<<<<<<< HEAD
 
     public List<GameListing> GetGameListings()
     {
@@ -39,4 +40,9 @@ public class GameListing
         }
         return listings;
     }
+=======
+    
+>>>>>>> e38023fb93b8c5f7b4ddad5b7aa2e9edea2b9b6a
 }
+
+

@@ -1,10 +1,16 @@
 ﻿@inject NavigationManager MyNavigationManager
+@using Microsoft.Data.SqlClient;
+@using System.Text;
+@using Domain_Models.DataBase;
+@using System.Configuration;
+@using System.Data;
 <div class="navbar-brand">
     <h1>Gaming</h1>
 </div>
 
 <div class="searchbar-container">
-    <input class="searchbar" type="text" placeholder="Søg efter en vare" />
+    <input  class="searchbar" type="text" placeholder="Søg efter en vare" />
+    <button @onclick="search" class="Submit" type="submit"></button>
     <div class="searchbar-icon">
         <i class="fas fa-search"></i>
     </div>
@@ -23,7 +29,7 @@
         </div>
     </div>
 }
-else if (MyNavigationManager.Uri.Contains("OpretSpil"))
+else if (MyNavigationManager.Uri.Contains("Opretspil") || MyNavigationManager.Uri.Contains("GameProfile"))
 {
     <div class="opretSpilSideBar">
         <div class="opretSpilPofilBillede">
@@ -39,5 +45,41 @@ else if (MyNavigationManager.Uri.Contains("OpretSpil"))
 
 
 @code {
+    protected override void OnInitialized()
+    {
+        MyNavigationManager.LocationChanged += HandleLocationChanged;
+    }
+
+    private void HandleLocationChanged(object sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
+    {
+        this.StateHasChanged();
+    }
+    
+      private void search()
+    {
+
+        string ConnectionString = System.Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTIONSTRING");
+        using (SqlConnection _connection = new SqlConnection(ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = _connection;   
+
+            StringBuilder sbCommand = new StringBuilder("Select * from GameListing");
+            
+            sbCommand.Append("where title=@title");
+            SqlParameter param = new SqlParameter("@title", SqlDbType.VarChar);
+            cmd.Parameters.Add(param);
+
+            cmd.CommandText = sbCommand.ToString();
+            cmd.CommandType = CommandType.Text;
+
+            _connection.Open();
+            //SqlDataReader rdr = cmd.ExecuteReader();
+            
+        }
+
+    }
+
+  
 
 }
