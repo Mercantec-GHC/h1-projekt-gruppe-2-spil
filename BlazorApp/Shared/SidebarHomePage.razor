@@ -64,7 +64,7 @@ else if (MyNavigationManager.Uri.Contains("Opretspil") || MyNavigationManager.Ur
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = _connection;   
 
-            StringBuilder sbCommand = new StringBuilder("Select * from GameListing");
+            StringBuilder sbCommand = new StringBuilder("Select * from GameListing inner join Game on GameListing.gameID = Game.id");
             
             sbCommand.Append("where title=@title");
             SqlParameter param = new SqlParameter("@title", SqlDbType.VarChar);
@@ -72,6 +72,7 @@ else if (MyNavigationManager.Uri.Contains("Opretspil") || MyNavigationManager.Ur
 
             cmd.CommandText = sbCommand.ToString();
             cmd.CommandType = CommandType.Text;
+            Console.WriteLine(cmd.CommandType);
 
             _connection.Open();
             //SqlDataReader rdr = cmd.ExecuteReader();
