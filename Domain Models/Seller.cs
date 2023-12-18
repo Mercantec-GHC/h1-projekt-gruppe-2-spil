@@ -94,8 +94,8 @@ public class Seller : User
         int publisher = 1;
         int developer = 1;
 
-        createRequirement(game.minimumRequirements, connectionString);
-        createRequirement(game.recommendedRequirements, connectionString);
+        //createRequirement(game.minimumRequirements, connectionString);
+        //createRequirement(game.recommendedRequirements, connectionString);
         /*insert into ajsdkjas (gameName, .....)*/
         //SqlCommand sqlcommnd = new SqlCommand($"INSERT INTO Game (gameName, genre, platform, publisher, developer, releaseDate, description) VALUES ('5', '5', '{game.developer}', '{game.releaseDate}', '{game.description}', '{game.ageRating}', '{game.numPlayers}', '{game.minimumRequirements}', '{game.recommendedRequirements}');");
         /*string sqlcommnd = new string($"INSERT INTO Game (name, publisher, developer, description, rating, numberOfPlayers, releaseDate, genre, minRequirementsID, maxRequirementsID) VALUES ({game.name}, {game.publisher}, {game.developer}, {game.releaseDate}, {game.description}, {game.ageRating}, {game.numPlayers});");
