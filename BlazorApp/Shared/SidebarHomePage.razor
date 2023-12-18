@@ -23,7 +23,7 @@
         </div>
     </div>
 }
-else if (MyNavigationManager.Uri.Contains("OpretSpil"))
+else if (MyNavigationManager.Uri.Contains("Opretspil") || MyNavigationManager.Uri.Contains("GameProfile"))
 {
     <div class="opretSpilSideBar">
         <div class="opretSpilPofilBillede">
@@ -39,5 +39,13 @@ else if (MyNavigationManager.Uri.Contains("OpretSpil"))
 
 
 @code {
+    protected override void OnInitialized()
+    {
+        MyNavigationManager.LocationChanged += HandleLocationChanged;
+    }
 
+    private void HandleLocationChanged(object sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
+    {
+        this.StateHasChanged();
+    }
 }

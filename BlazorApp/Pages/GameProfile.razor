@@ -294,5 +294,22 @@
 public int listingId { get; set; }
 
 
+
+@*string sql = "select g.name, g.description, g.releaseDate,
+case
+when g.numberOfPlayers = 1 then 'Single Player'
+when g.numberOfPlayers > 1 then 'Multi Player'
+end as numberOfPlayers,
+g.ageRating, p.publisherName, dev.developerName, ge.genreName, mingr.os, mingr.cpu, mingr.ram, mingr.gpu, mingr.storage, mingr.directX, maxgr.os, maxgr.cpu, maxgr.ram, maxgr.gpu, maxgr.storage, maxgr.directX from [dbo].[GameListing] as gl
+inner join [dbo].[Game] as g on gl.gameID = g.id
+inner join [dbo].[Publisher] as p on g.publisher = p.id
+inner join [dbo].[GameRequirements] as mingr on g.minRequirementsID = mingr.id
+inner join [dbo].[GameRequirements] as maxgr on g.maxRequirementsID = maxgr.id
+inner join [dbo].[assignGenreToGame] as ag on g.id = ag.gameID
+inner join [dbo].[Genre] as ge on ag.genreID = ge.id
+inner join [dbo].[assignDeveloperToGame] as asdev on g.id = asdev.gameID
+inner join [dbo].[Developer] as dev on asdev.developerID = dev.id
+where gl.listingID = {listingId}";
+*@
     
 }
