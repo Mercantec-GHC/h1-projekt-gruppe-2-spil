@@ -4,17 +4,22 @@
 @using Domain_Models.DataBase;
 @using System.Configuration;
 @using System.Data;
+@using System.Diagnostics;
 <div class="navbar-brand">
     <h1>Gaming</h1>
 </div>
 
 <div class="searchbar-container">
-    <input  class="searchbar" type="text" placeholder="Søg efter en vare" />
-    <button @onclick="search" class="Submit" type="submit"></button>
+    <input @bind="searchTitle" class="searchbar" type="text" placeholder="Søg efter en vare" />
+    <button @onclick="searchbar" class="Submit" type="button"></button>
+
     <div class="searchbar-icon">
         <i class="fas fa-search"></i>
+
     </div>
+
 </div>
+
 <div class="sideBarInformationBox">
 
 @if(@MyNavigationManager.Uri.Contains("profile"))
@@ -45,6 +50,8 @@ else if (MyNavigationManager.Uri.Contains("Opretspil") || MyNavigationManager.Ur
 
 
 @code {
+    public List<string> titles = new List<string>();
+    public string searchTitle;
     protected override void OnInitialized()
     {
         MyNavigationManager.LocationChanged += HandleLocationChanged;
@@ -54,33 +61,58 @@ else if (MyNavigationManager.Uri.Contains("Opretspil") || MyNavigationManager.Ur
     {
         this.StateHasChanged();
     }
-    
-      private void search()
-    {
 
+    public void searchbar()
+    {
+        titles.Clear();
         string ConnectionString = System.Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTIONSTRING");
         using (SqlConnection _connection = new SqlConnection(ConnectionString))
         {
             SqlCommand cmd = new SqlCommand();
-            cmd.Connection = _connection;   
+            cmd.Connection = _connection;
 
-            StringBuilder sbCommand = new StringBuilder("Select * from GameListing inner join Game on GameListing.gameID = Game.id");
-            
-            sbCommand.Append("where title=@title");
-            SqlParameter param = new SqlParameter("@title", SqlDbType.VarChar);
-            cmd.Parameters.Add(param);
+            StringBuilder sbCommand = new StringBuilder(
+                "SELECT title FROM GameListing INNER JOIN Game ON GameListing.gameID = Game.id ");
+            sbCommand.Append("WHERE title LIKE @title");
 
             cmd.CommandText = sbCommand.ToString();
             cmd.CommandType = CommandType.Text;
             Console.WriteLine(cmd.CommandType);
 
-            _connection.Open();
-            //SqlDataReader rdr = cmd.ExecuteReader();
-            
-        }
+            cmd.Parameters.AddWithValue("@title", "%" + searchTitle + "%");
 
+            _connection.Open();
+
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+
+                while (reader.Read())
+                {
+                    titles.Add(reader.GetString(0));
+                    Debug.WriteLine(reader.GetString(0));
+
+                }
+            }
+        }
+        
     }
+
+
+
+
+    
+
+
+    
+    
+    
+    
+
+
+   
+
 
   
 
+}
 }
