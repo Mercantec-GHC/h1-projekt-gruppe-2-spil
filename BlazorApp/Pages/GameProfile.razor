@@ -1,4 +1,7 @@
-﻿@page "/GameProfile/{listingId:int}"
+﻿@using Domain_Models.DataBase;
+@using Domain_Models;
+@using Microsoft.Data.SqlClient;
+@* @page "/GameProfile/{listingId:int}" *@
 @page "/GameProfile"
 
 <h3>GameProfile</h3>
@@ -16,15 +19,15 @@
     </div>
 
     <div class="InfoBox">
-        <p class="GameName">Baldurs gate 3 til salg</p>
-        <p class="Description"> Sælger dette Baldurs gate spil da jeg ikke kommer til at bruge det alligevel</p>
-        <p class="Condition">God tilstand</p>
-        <p class="Genre">Genre: Adventure, RPG, Strategy, Multiplayer, Singleplayer</p>
-        <p class="Publisher">Publisher: Larian Studios</p>
-        <p class="Developer">Developer: Larian Studios</p>
-        <p class="MaxPlayer">Max Players: 4 players</p>
-        <p class="Platform">Platform: PC</p>
-        <p class="Price">500 Kr.</p>
+        <p class="GameName">@game.name</p>
+        <p class="Description">@game.description</p>
+        <p class="Condition">@gameListing.condition</p>
+        <p class="Genre">@game.genres</p>
+        <p class="Publisher">@game.publisher</p>
+        <p class="Developer">@game.developer</p>
+        <p class="MaxPlayer">@game.numPlayers</p>
+        <p class="Platform">@game.gamePlatforms</p>
+        <p class="Price">@gameListing.price</p>
     </div>
 </div>
     
@@ -48,25 +51,25 @@
             <p class="MinimumReq">Minimum Requirements:</p>
             <p class="MinimumReq"> Minimum: Requires a 64-bit processor and operating system</p>
 
-            <p class="MinimumReq">OS: Windows 10 64-bit</p>
-            <p class="MinimumReq">  Processor: Intel I5 4690 / AMD FX 8350</p>
-            <p class="MinimumReq"> Memory: 8 GB RAM</p>
-            <p class="MinimumReq"> Graphics: Nvidia GTX 970 / RX 480 (4GB+ of VRAM)</p>
-            <p class="MinimumReq"> DirectX: Version 11</p>
-            <p class="MinimumReq"> Storage: 150 GB available space</p>
+            <p class="MinimumReq">OS: @game.minimumRequirements.os</p>
+            <p class="MinimumReq">CPU: @game.minimumRequirements.cpu</p>
+            <p class="MinimumReq">RAM: @game.minimumRequirements.ram GB</p>
+            <p class="MinimumReq">GPU: @game.minimumRequirements.gpu</p>
+            <p class="MinimumReq">DirectX: @game.minimumRequirements.directX</p>
+            <p class="MinimumReq">Storage: @game.minimumRequirements.diskStorage GB available space</p>
             <p class="MinimumReq"> Additional Notes: SSD required</p>
         </div>
         <div class="ReqBox">
 
-            <p class="MinimumReq">Minimum Requirements:</p>
+            <p class="MinimumReq">Recommended Requirements:</p>
             <p class="MinimumReq"> Minimum: Requires a 64-bit processor and operating system</p>
 
-            <p class="MinimumReq">OS: Windows 10 64-bit</p>
-            <p class="MinimumReq">  Processor: Intel I5 4690 / AMD FX 8350</p>
-            <p class="MinimumReq"> Memory: 8 GB RAM</p>
-            <p class="MinimumReq"> Graphics: Nvidia GTX 970 / RX 480 (4GB+ of VRAM)</p>
-            <p class="MinimumReq"> DirectX: Version 11</p>
-            <p class="MinimumReq"> Storage: 150 GB available space</p>
+            <p class="MinimumReq">OS: @game.recommendedRequirements.os</p>
+            <p class="MinimumReq">CPU: @game.recommendedRequirements.cpu</p>
+            <p class="MinimumReq">RAM: @game.recommendedRequirements.ram GB</p>
+            <p class="MinimumReq">GPU: @game.recommendedRequirements.gpu</p>
+            <p class="MinimumReq">DirectX: @game.recommendedRequirements.directX</p>
+            <p class="MinimumReq"> Storage: @game.recommendedRequirements.diskStorage GB available space</p>
             <p class="MinimumReq"> Additional Notes: SSD required</p>
         </div>
     </div>
@@ -290,12 +293,29 @@
 
 @code {
 
+//[Parameter]
+public int listingId = 2;
+
 [Parameter]
-public int listingId { get; set; }
+public GameListing gameListing { get; set; }
 
 
 
-@*string sql = "select g.name, g.description, g.releaseDate,
+public Game game { get; set; }
+
+
+void makeGame(){
+    game = new Game();
+    game = game.getGame(listingId);
+}
+
+protected override void OnInitialized()
+    {
+       makeGame();
+    }
+
+
+/*string sql = "select g.name, g.description, g.releaseDate,
 case
 when g.numberOfPlayers = 1 then 'Single Player'
 when g.numberOfPlayers > 1 then 'Multi Player'
@@ -310,6 +330,6 @@ inner join [dbo].[Genre] as ge on ag.genreID = ge.id
 inner join [dbo].[assignDeveloperToGame] as asdev on g.id = asdev.gameID
 inner join [dbo].[Developer] as dev on asdev.developerID = dev.id
 where gl.listingID = {listingId}";
-*@
+*/
     
 }

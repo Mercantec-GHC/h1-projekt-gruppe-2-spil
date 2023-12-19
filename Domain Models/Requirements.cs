@@ -17,6 +17,18 @@ namespace Domain_Models
         public string diskStorage;
         public string directX;
 
+
+
+        public Requirements(string OS, string CPU, string RAM, string GPU, string storage, string DirectX)
+    {
+        os = OS;
+        cpu = CPU;
+        ram = RAM;
+        gpu = GPU;
+        diskStorage = storage;
+        directX = DirectX;
+    }
+
         public void UpdateRequirements(string CPU, string RAM, string OS, string GPU, string storage, string DirectX)
         {
             cpu = CPU;

@@ -28,7 +28,7 @@
 
         </div>
 
-        <div class="req">
+        @* <div class="req">
             <input @bind="minRequirement.cpu" class="minCPU" type="text" placeholder="Minimum CPU">
             <input @bind="minRequirement.ram" class="minRam" type="text" placeholder="Minimum RAM">
             <input @bind="minRequirement.os" class="minOS" type="text" placeholder="Minimum OS">
@@ -41,7 +41,7 @@
             <input @bind="recRequirement.gpu" class="recGPU" type="text" placeholder="Recommended Grafikkort">
             <input @bind="recRequirement.diskStorage" class="recDisk" type="text" placeholder="Recommended Disk Lager">
             <input @bind="recRequirement.directX" class="recDirectX" type="text" placeholder="Recommended DirectX">
-        </div>
+        </div> *@
 
 
 
@@ -251,8 +251,8 @@
     int numberOfPlayers { get; set; }
     DateTime releaseDate { get; set; }
     int ageRating { get; set; }
-    Requirements minRequirement = new Requirements();
-    Requirements recRequirement = new Requirements();
+    @* Requirements minRequirement = new Requirements();
+    Requirements recRequirement = new Requirements(); *@
 
 
 
@@ -270,13 +270,13 @@
         gameListing.dateMade = DateTime.Now;
         // gameListing.game.gamePlatforms = platform;
         // gameListing.game.genres = platform;
-        gameListing.game.publisher = publisher;
+        /* gameListing.game.publisher = publisher;
         gameListing.game.developer = developer;
         gameListing.game.numPlayers = numberOfPlayers;
         gameListing.game.releaseDate = releaseDate;
         gameListing.game.ageRating = ageRating;
         gameListing.game.minimumRequirements = minRequirement;
-        gameListing.game.recommendedRequirements = recRequirement;
+        gameListing.game.recommendedRequirements = recRequirement; */
         //string sqlcommnd = new string($"INSERT INTO GameListing (sellerID, gameID, title, condition, createdAt, sold, price) VALUES (1, 6, '3', 'this was made with blazor', GETDATE(), 0, 100);");
 
         //DataBaseConnection.DataBaseConnect(sqlcommnd);
