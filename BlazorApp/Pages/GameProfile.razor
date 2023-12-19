@@ -1,7 +1,8 @@
 ﻿@using Domain_Models.DataBase;
 @using Domain_Models;
 @using Microsoft.Data.SqlClient;
-@* @page "/GameProfile/{listingId:int}" *@
+@using System.Diagnostics;
+@page "/GameProfile/{listingId:int}" 
 @page "/GameProfile"
 
 <h3>GameProfile</h3>
@@ -21,13 +22,13 @@
     <div class="InfoBox">
         <p class="GameName">@game.name</p>
         <p class="Description">@game.description</p>
-        <p class="Condition">@gameListing.condition</p>
+        <p class="Condition">@game.condition</p>
         <p class="Genre">@game.genres</p>
         <p class="Publisher">@game.publisher</p>
         <p class="Developer">@game.developer</p>
         <p class="MaxPlayer">@game.numPlayers</p>
         <p class="Platform">@game.gamePlatforms</p>
-        <p class="Price">@gameListing.price</p>
+        <p class="Price">@game.price</p>
     </div>
 </div>
     
@@ -293,26 +294,29 @@
 
 @code {
 
-//[Parameter]
-public int listingId = 2;
-
-[Parameter]
-public GameListing gameListing { get; set; }
+    [Parameter]
+    public int listingId { get; set; }
 
 
+    public GameListing gameListing { get; set; }
 
-public Game game { get; set; }
 
 
-void makeGame(){
-    game = new Game();
-    game = game.getGame(listingId);
-}
+    public Game game { get; set; }
 
-protected override void OnInitialized()
-    {
-       makeGame();
+
+    void makeGame(){
+        game = new Game();
+        game = game.getGame(listingId);
     }
+
+    protected override void OnInitialized()
+    {
+        Debug.WriteLine(listingId);
+        makeGame();
+        
+    }
+
 
 
 /*string sql = "select g.name, g.description, g.releaseDate,

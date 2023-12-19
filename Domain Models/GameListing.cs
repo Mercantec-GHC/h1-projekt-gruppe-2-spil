@@ -31,8 +31,8 @@ public class GameListing
                 {
                     GameListing listing = new GameListing();
 
-
-                    listing.sellerID = (Int32)reader["listingID"];
+                    listing.listingId = (int)reader["listingID"];
+                    listing.sellerID = (Int32)reader["sellerID"];
                     listing.price = (decimal)reader["price"];
                     listing.condition = reader["condition"].ToString();
                     listing.title = reader["title"].ToString();

@@ -20,7 +20,7 @@
                 </svg>@seller.city</p>
             
         </div>
-        <a href="GameProfile.razor"><button class="SeeMoreButton" type="button">Opret</button></a>
+        <a href="GameProfile/@gameListing.listingId"><button href="GameProfile/@gameListing.listingId" class="seeMoreButton" type="button">Se mere</button></a>
     </div>
 </div>
 
@@ -28,11 +28,17 @@
 
 
 @code {
+   
     [Parameter]
     public GameListing gameListing { get; set; }
 
     [Parameter]
     public Seller seller { get; set; }
 
+    protected override void OnInitialized()
+    {
+        Debug.WriteLine(gameListing.listingId);
+        
 
+    }
 }

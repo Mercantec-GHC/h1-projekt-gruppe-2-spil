@@ -11,15 +11,15 @@ namespace Domain_Models
     {
         public int id;
         public string cpu;
-        public string ram;
+        public int ram;
         public string os;
         public string gpu;
-        public string diskStorage;
+        public int diskStorage;
         public string directX;
 
 
 
-        public Requirements(string OS, string CPU, string RAM, string GPU, string storage, string DirectX)
+        public Requirements(string OS, string CPU, int RAM, string GPU, int storage, string DirectX)
     {
         os = OS;
         cpu = CPU;
@@ -29,7 +29,7 @@ namespace Domain_Models
         directX = DirectX;
     }
 
-        public void UpdateRequirements(string CPU, string RAM, string OS, string GPU, string storage, string DirectX)
+        public void UpdateRequirements(string CPU, int RAM, string OS, string GPU, int storage, string DirectX)
         {
             cpu = CPU;
             ram = RAM;

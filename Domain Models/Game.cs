@@ -6,6 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using System.Reflection;
 
 namespace Domain_Models
 {
@@ -58,6 +59,10 @@ namespace Domain_Models
         public string publisher {get; set;}
         public string developer {get; set;}
         public string description {get; set;}
+
+        public string? condition { get; set;}
+
+        public decimal? price { get; set;}
         public int numPlayers {get; set;}
         public int ageRating {get; set;}
         public DateTime releaseDate {get; set;}
@@ -189,8 +194,8 @@ namespace Domain_Models
 // when g.numberOfPlayers > 1 then 'Multi Player'
 // end as 
 
-                string getgameID = @"select g.name, g.description, g.releaseDate, g.numberOfPlayers,
-                g.ageRating, p.publisherName, dev.developerName, ge.genreName, mingr.os, mingr.cpu, mingr.ram, 
+                string getgameID = @"select g.name, g.description, gl.condition, g.releaseDate, g.numberOfPlayers,
+                g.ageRating, p.publisherName, dev.developerName, ge.genreName, gl.price, mingr.os, mingr.cpu, mingr.ram, 
                 mingr.gpu, mingr.storage, mingr.directX, maxgr.os, maxgr.cpu, maxgr.ram, maxgr.gpu, maxgr.storage, 
                 maxgr.directX from [dbo].[GameListing] as gl 
                 inner join [dbo].[Game] as g on gl.gameID = g.id 
@@ -210,16 +215,19 @@ namespace Domain_Models
 
                     while (reader.Read())
                     {
+
                         game.name = (string)reader["name"];
                         game.description = (string)reader["description"];
+                        game.condition = reader["condition"].ToString();
+                        game.price = (decimal)reader["price"];
                         game.releaseDate = (DateTime)reader["releaseDate"];
                         game.numPlayers = (int)reader["numberOfPlayers"];
                         game.ageRating = (int)reader["ageRating"];
                         game.publisher = (string)reader["publisherName"];
                         game.developer = (string)reader["developerName"];
                         game.genres = (string)reader["genreName"];
-                        game.minimumRequirements = new Requirements((string)reader["os"], (string)reader["cpu"], (string)reader["ram"], (string)reader["gpu"], (string)reader["storage"], (string)reader["directX"]);
-                        game.recommendedRequirements = new Requirements((string)reader["os1"], (string)reader["cpu1"], (string)reader["ram1"], (string)reader["gpu1"], (string)reader["storage1"], (string)reader["directX1"]);
+                        game.minimumRequirements = new Requirements((string)reader["os"], (string)reader["cpu"], (int)reader["ram"], (string)reader["gpu"], (int)reader["storage"], (string)reader["directX"]);
+                        game.recommendedRequirements = new Requirements((string)reader["os"], (string)reader["cpu"], (int)reader["ram"], (string)reader["gpu"], (int)reader["storage"], (string)reader["directX"]);
                     }
                 }
             }

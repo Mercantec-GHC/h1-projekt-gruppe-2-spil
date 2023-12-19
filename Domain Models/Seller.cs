@@ -189,7 +189,7 @@ public class Seller : User
                     Seller seller = new Seller();
 
 
-                    seller.userId = (Int32)reader["listingID"];
+                    seller.userId = (Int32)reader["sellerID"];
                     seller.username = reader["username"].ToString();
                     seller.city = reader["city"].ToString();
 
