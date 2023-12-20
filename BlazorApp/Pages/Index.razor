@@ -1,4 +1,6 @@
 @page "/"
+@page "/{search}"
+@inject NavigationManager MyNavigationManager
 @using Domain_Models.DataBase;
 @using Domain_Models;
 @using Microsoft.Data.SqlClient;
@@ -26,15 +28,26 @@
     GameListing displayListing = new GameListing();
     Seller seller = new Seller();
 
+    [Parameter]
+    public string? search { get; set; }
+
+
+    private void handleLocationChanged(object sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
+    {
+
+        makeLists();
+        this.StateHasChanged();
+    }
     void makeLists()
     {
-        gameListings = displayListing.GetGameListings();
+        gameListings = displayListing.GetGameListings(search);
         sellers = seller.GetSellers();
     }
 
     protected override void OnInitialized()
     {
         makeLists();
+        MyNavigationManager.LocationChanged += handleLocationChanged;
     }
 
     protected override void OnAfterRender(bool firstRender)
