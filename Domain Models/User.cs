@@ -59,74 +59,14 @@ namespace Domain_Models
             aboutMe = AboutMe;
             permissions = Permissions;
             isOnline = IsOnline;
-            //DataBaseConnection.DataBaseConnect();
-            //string checkForPhoneNumber = $"SELECT phoneNumber FROM dbo.user WHERE phoneNumber = {phoneNumber}";
-            //string checkForZipCode = $"SELECT zipCode FROM dbo.user WHERE zipCode = {zipCode}";
-            //string checkForCity = $"SELECT city FROM dbo.user WHERE city = {city}";
+           
 
             string connectionString = System.Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTIONSTRING");
 
             using (SqlConnection _connection = new SqlConnection(connectionString))
             {
                 _connection.Open();
-                // string CheckForDuplicate(string checkForDuplicate)
-                // {
-                //     string result = "";
-                //     using (SqlCommand command = new SqlCommand(checkForDuplicate, _connection))
-                //     {
-                //         using (SqlDataReader reader = command.ExecuteReader())
-                //         {
-                //             while (reader.Read())
-                //             {
-                //                 result = reader[0].ToString();
-                //             }
-                //         }
-                //     }
-                //     return result;
-                // }
-                // if (CheckForDuplicate(checkForPhoneNumber) != $"{phoneNumber}")
-                // {
-                //     string sqlcommnd = $"UPDATE dbo.user SET phoneNumber = @phoneNumber WHERE ID = @userId";
-                //     using(SqlCommand command = new SqlCommand(sqlcommnd, _connection))
-                //     {
-                //         command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
-                //         command.Parameters.AddWithValue("@userId", userId);
-                //         command.ExecuteNonQuery();
-                //     }
-                // }
-                // else if (CheckForDuplicate(checkForZipCode) != $"{zipCode}")
-                // {
-                //     string sqlcommnd = $"UPDATE dbo.user SET zipCode = @zipCode WHERE ID = @userId";
-                //      using(SqlCommand command = new SqlCommand(sqlcommnd, _connection))
-                //     {
-                //         command.Parameters.AddWithValue("@zipCode", zipCode);
-                //         command.Parameters.AddWithValue("@userId", userId);
-                //         command.ExecuteNonQuery();
-                //     }
-                // }
-                // else if (CheckForDuplicate(checkForCity) != $"{city}")
-                // {
-                //     string sqlcommnd = $"UPDATE dbo.user SET city = @city WHERE ID = @userId";
-                //      using(SqlCommand command = new SqlCommand(sqlcommnd, _connection))
-                //     {
-                //         command.Parameters.AddWithValue("@city", city);
-                //         command.Parameters.AddWithValue("@userId", userId);
-                //         command.ExecuteNonQuery();
-                //     }
-
-                // }
-                // else
-                // {
-                //     string sqlcommnd = $"UPDATE dbo.user SET phoneNumber = @phoneNumber, zipCode = @zipCode, city = @city WHERE ID = @userId";
-                //      using(SqlCommand command = new SqlCommand(sqlcommnd, _connection))
-                //     {
-                //         command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
-                //         command.Parameters.AddWithValue("@zipCode", zipCode);
-                //         command.Parameters.AddWithValue("@city", city);
-                //         command.Parameters.AddWithValue("@userId", userId);
-                //         command.ExecuteNonQuery();
-                //     }
-                // }
+                
                 string sqlcommnd = $"UPDATE dbo.user SET username = @username, password = @password, phoneNumber = @phoneNumber, phoneNumberExtention = @phoneExtension, zipCode = @zipCode, city = @city, aboutMe = @aboutMe, createdAt = @created WHERE ID = @userId";
                      using(SqlCommand command = new SqlCommand(sqlcommnd, _connection))
                     {

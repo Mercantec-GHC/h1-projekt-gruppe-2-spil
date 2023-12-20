@@ -18,8 +18,6 @@
     </div>
     <div class="GenreBox">
         <div>
-            @*<input @bind="platform" class="Platform" type="Text" placeholder="Platform" />*@
-            @*<input @bind="Genre" class="Genre" type="Text" placeholder="Genre" />*@
             <input @bind="publisher" class="Publisher" type="Text" placeholder="Publisher" />
             <input @bind="developer" class="Developer" type="Text" placeholder="Developer" />
             <input @bind="numberOfPlayers" class="NumberOfPlayers" type="Text" placeholder="NumberOfPlayers" />
@@ -28,20 +26,7 @@
 
         </div>
 
-        @* <div class="req">
-            <input @bind="minRequirement.cpu" class="minCPU" type="text" placeholder="Minimum CPU">
-            <input @bind="minRequirement.ram" class="minRam" type="text" placeholder="Minimum RAM">
-            <input @bind="minRequirement.os" class="minOS" type="text" placeholder="Minimum OS">
-            <input @bind="minRequirement.gpu" class="minGPU" type="text" placeholder="Minimum Grafikkort">
-            <input @bind="minRequirement.diskStorage" class="minDisk" type="text" placeholder="Minimum Disk Lager">
-            <input @bind="minRequirement.directX" class="minDirectX" type="text" placeholder="Minimum DirectX">
-            <input @bind="recRequirement.cpu" class="recCPU" type="text" placeholder="Recommended CPU">
-            <input @bind="recRequirement.ram" class="recRam" type="text" placeholder="Recommended RAM">
-            <input @bind="recRequirement.os" class="recOS" type="text" placeholder="Recommended OS">
-            <input @bind="recRequirement.gpu" class="recGPU" type="text" placeholder="Recommended Grafikkort">
-            <input @bind="recRequirement.diskStorage" class="recDisk" type="text" placeholder="Recommended Disk Lager">
-            <input @bind="recRequirement.directX" class="recDirectX" type="text" placeholder="Recommended DirectX">
-        </div> *@
+
 
 
 
@@ -242,17 +227,16 @@
     string condition { get; set; }
     string description { get; set; }
     decimal price { get; set; }
-    //List<gamePlatform> platform { get; set; }
+    
     string platformSTring { get; set; }
-    //List<genre> Genre { get; set; }
+
     string genreString { get; set; }
     string publisher { get; set; }
     string developer { get; set; }
     int numberOfPlayers { get; set; }
     DateTime releaseDate { get; set; }
     int ageRating { get; set; }
-    @* Requirements minRequirement = new Requirements();
-    Requirements recRequirement = new Requirements(); *@
+  
 
 
 
@@ -268,18 +252,7 @@
         gameListing.game.description = description;
         gameListing.price = price;
         gameListing.dateMade = DateTime.Now;
-        // gameListing.game.gamePlatforms = platform;
-        // gameListing.game.genres = platform;
-        /* gameListing.game.publisher = publisher;
-        gameListing.game.developer = developer;
-        gameListing.game.numPlayers = numberOfPlayers;
-        gameListing.game.releaseDate = releaseDate;
-        gameListing.game.ageRating = ageRating;
-        gameListing.game.minimumRequirements = minRequirement;
-        gameListing.game.recommendedRequirements = recRequirement; */
-        //string sqlcommnd = new string($"INSERT INTO GameListing (sellerID, gameID, title, condition, createdAt, sold, price) VALUES (1, 6, '3', 'this was made with blazor', GETDATE(), 0, 100);");
-
-        //DataBaseConnection.DataBaseConnect(sqlcommnd);
+      
         seller.createListing(gameListing);
     }
 

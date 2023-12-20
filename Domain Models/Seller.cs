@@ -43,28 +43,9 @@ public class Seller : User
         string ConnectionString = System.Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTIONSTRING");
         int userId = 1;
         
-        //insert into ajsdkjas (gameName, .....)
+        
         createGame(listing.game, ConnectionString);
-        /*//SqlCommand sqlcommnd = new SqlCommand($"INSERT INTO GameListing (seller_id, game_id, title, condition, datemade, sold) VALUES ('{userId}', '{listing.game.id}', '{listing.title}', '{listing.condition}', '{listing.dateMade}', '{listing.isSold}');");
-
-
-        //SqlCommand sqlcommnd = new SqlCommand($"INSERT INTO GameListing (sellerID, gameID, title, condition, createdAt, sold, price) VALUES ('{userId}', '{listing.game.id}', '{listing.title}', '{listing.condition}', '{listing.dateMade}', '{listing.isSold}, {listing.price}');");
-        string sqlcommnd = new string($"INSERT INTO GameListing (sellerID, gameID, title, condition, createdAt, sold, price) VALUES (1, 6, '3', 'this was made with blazor', GETDATE(), 0, 100);");
-
-        //string sqlcommnd = new string($"INSERT INTO GameListing (sellerID, gameID, title, condition, createdAt, sold, price) VALUES ('{userId}', '{listing.game.id}', '{listing.title}', '{listing.condition}', '{listing.dateMade}', '{listing.isSold}, {listing.price}');");
-
-        //string sqlcommnd = new string($"INSERT INTO GameListing (sellerID, gameID, title, condition, createdAt, sold, price) VALUES ({userId}, {listing.game.id}, {listing.title}, {listing.condition}, {listing.dateMade}, {listing.isSold}, {listing.price});");
-
-        //string sqlcommnd = new string($"INSERT INTO GameListing (sellerID, gameID, title, condition, createdAt, sold, price) VALUES (1, 6, '3', 'this was made with blazor', GETDATE(), 0, 100);");f32fcd06b05ed4401db3d560e0adfa4c72b8858a
-
-        DataBaseConnection.DataBaseConnect(sqlcommnd);
-
-
-        if (listing != null)
-        {
-            //listings.Add(listing);
-        }
-        */
+        
         using (SqlConnection connection = new SqlConnection(ConnectionString))
         {
             connection.Open();
@@ -94,14 +75,7 @@ public class Seller : User
         int publisher = 1;
         int developer = 1;
 
-        //createRequirement(game.minimumRequirements, connectionString);
-        //createRequirement(game.recommendedRequirements, connectionString);
-        /*insert into ajsdkjas (gameName, .....)*/
-        //SqlCommand sqlcommnd = new SqlCommand($"INSERT INTO Game (gameName, genre, platform, publisher, developer, releaseDate, description) VALUES ('5', '5', '{game.developer}', '{game.releaseDate}', '{game.description}', '{game.ageRating}', '{game.numPlayers}', '{game.minimumRequirements}', '{game.recommendedRequirements}');");
-        /*string sqlcommnd = new string($"INSERT INTO Game (name, publisher, developer, description, rating, numberOfPlayers, releaseDate, genre, minRequirementsID, maxRequirementsID) VALUES ({game.name}, {game.publisher}, {game.developer}, {game.releaseDate}, {game.description}, {game.ageRating}, {game.numPlayers});");
-        DataBaseConnection.DataBaseConnect(sqlcommnd);
-        sqlcommnd = new string($"INSERT INTO Game (name, publisher, developer, description, rating, numberOfPlayers, releaseDate, genre, minRequirementsID, maxRequirementsID) VALUES ('AAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH', 1, 1, 'a', 12, 1, GETDATE(), 1, 2, 2);");
-        DataBaseConnection.DataBaseConnect(sqlcommnd);*/
+       
 
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
@@ -135,12 +109,7 @@ public class Seller : User
     }
     public void createRequirement(Requirements requirements, string connectionString)
     {
-        /*insert into ajsdkjas (gameName, .....)*/
-        //SqlCommand sqlcommnd = new SqlCommand($"INSERT INTO Game (gameName, genre, platform, publisher, developer, releaseDate, description) VALUES ('5', '5', '{game.developer}', '{game.releaseDate}', '{game.description}', '{game.ageRating}', '{game.numPlayers}', '{game.minimumRequirements}', '{game.recommendedRequirements}');");
-        /*string sqlcommnd = new string($"INSERT INTO Game (name, publisher, developer, description, rating, numberOfPlayers, releaseDate, genre, minRequirementsID, maxRequirementsID) VALUES ({game.name}, {game.publisher}, {game.developer}, {game.releaseDate}, {game.description}, {game.ageRating}, {game.numPlayers});");
-        DataBaseConnection.DataBaseConnect(sqlcommnd);
-        sqlcommnd = new string($"INSERT INTO Game (name, publisher, developer, description, rating, numberOfPlayers, releaseDate, genre, minRequirementsID, maxRequirementsID) VALUES ('AAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH', 1, 1, 'a', 12, 1, GETDATE(), 1, 2, 2);");
-        DataBaseConnection.DataBaseConnect(sqlcommnd);*/
+      
         string ConnectionString = System.Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTIONSTRING");
 
         using (SqlConnection connection = new SqlConnection(connectionString))
