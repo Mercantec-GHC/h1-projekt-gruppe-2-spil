@@ -6,6 +6,8 @@
 @using System.Configuration;
 @using System.Data;
 @using System.Diagnostics;
+@using Domain_Models;
+@using System.Linq;
 <div class="navbar-brand">
     <h1>Gaming</h1>
 </div>
@@ -35,19 +37,19 @@
         </div>
     </div>
 }
-else if (MyNavigationManager.Uri.Contains("Opretspil") || MyNavigationManager.Uri.Contains("GameProfile"))
+else if (MyNavigationManager.Uri.Contains("Opretspil") || MyNavigationManager.Uri.Contains($"GameProfile"))
 {
     <div class="opretSpilSideBar">
         <div class="opretSpilPofilBillede">
             <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
-            <p>ExampleUser123</p>
+            <p>@user.username</p>
         </div>
         <div class="opretSpilSideBarEmail">
             <p>Email: example@example.com</p>
-            <p>Tlf. Nr: 89892329</p>
+            <p>Tlf. Nr: @user.phoneNumber</p>
         </div>
         <div class="opretSpilSideBarCity">
-            <p>by postnummer</p>
+            <p>@user.city @user.zipCode</p>
         </div>
     </div>
 } 
@@ -58,16 +60,39 @@ else if (MyNavigationManager.Uri.Contains("Opretspil") || MyNavigationManager.Ur
 
 
 @code {
+   
+
+    [Parameter]
+    public int userId { get; set; } = 2;
+
+
+
+    public User user { get; set; } 
+
+  
+   
+
+
+    void makeUser(){
+        user = new User();
+       
+        user = user.GetUser(userId);
+    }
+
+   
+
     public List<string> titles = new List<string>();
     public string searchTitle;
     protected override void OnInitialized()
     {
         MyNavigationManager.LocationChanged += HandleLocationChanged;
+        makeUser();
     }
 
     private void HandleLocationChanged(object sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
     {
         this.StateHasChanged();
+        
     }
 
     public void searchbar()

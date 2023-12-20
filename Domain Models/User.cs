@@ -115,7 +115,7 @@ namespace Domain_Models
                 connection.Open();
 
 
-                string getgameID = @"select username, city, zipcode, aboutMe from [dbo].[Users] where id = @userid";
+                string getgameID = "select username, city, zipcode, aboutMe from [dbo].[Users] where id = @userid";
                 using (SqlCommand command = new SqlCommand(getgameID, connection))
                 {
                     command.Parameters.AddWithValue("@userid", userId);
