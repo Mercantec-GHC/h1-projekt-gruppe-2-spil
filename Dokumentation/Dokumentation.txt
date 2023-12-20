@@ -1,2 +1,8 @@
 Her skal alt jeres dokumentation være
 UML Digrammer og Database Digrammer
+
+
+DataBase diagram link: 
+https://drawsql.app/teams/my-team-1498/diagrams/h1-spil-eksamen
+
+
