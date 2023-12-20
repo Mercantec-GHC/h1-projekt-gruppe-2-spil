@@ -10,6 +10,9 @@
 <PageTitle>Index</PageTitle>
 
 
+<input @bind="searchYear" class="searchbar" type="text" placeholder="ældste udgivelses år for spil" />
+<input @bind="genreSearch" class="searchbar" type="text" placeholder="Søg efter en genre" />
+
 @foreach (GameListing listing in gameListings)
 {
     foreach (Seller seller in sellers)
@@ -31,6 +34,9 @@
     [Parameter]
     public string? search { get; set; }
 
+    public int searchYear { get; set; }
+
+    public string? genreSearch { get; set; }
 
     private void handleLocationChanged(object sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
     {
@@ -40,7 +46,7 @@
     }
     void makeLists()
     {
-        gameListings = displayListing.GetGameListings(search);
+        gameListings = displayListing.GetGameListings(search, searchYear, genreSearch);
         sellers = seller.GetSellers();
     }
 

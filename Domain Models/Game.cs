@@ -73,7 +73,26 @@ namespace Domain_Models
         public Requirements minimumRequirements {get; set;}
         public Requirements recommendedRequirements {get; set;}
 
-       
+        // public Game(string Name,
+        //             string Publisher,
+        //             string Developer,
+        //             string Description,
+        //             int NumPlayers,
+        //             int AgeRating,
+        //             DateTime ReleaseDate,
+        //             string Genres,
+        //             string GamePlatforms)
+        // {
+        //     name = Name;
+        //     publisher = Publisher;
+        //     developer = Developer;
+        //     description = Description;
+        //     numPlayers = NumPlayers;
+        //     ageRating = AgeRating;
+        //     releaseDate = ReleaseDate;
+        //     genres = Genres;
+        //     gamePlatforms = GamePlatforms;
+        // }
 
         public void UpdateGameData(string Name,
                                    string Publisher,
@@ -95,7 +114,72 @@ namespace Domain_Models
             genres = Genres;
             gamePlatforms = GamePlatforms;
 
-          
+            /*try
+            {
+
+              
+                //DataBaseConnection.DataBaseConnect();
+                using (SqlConnection connection = new SqlConnection(connectionString: DataBaseConnection.ConnectionString))
+                {
+                    connection.Open();
+
+                    // Check if the specified 'id' exists in the 'dbo.game' table
+                    string checkQuery = $"SELECT COUNT(*) FROM dbo.game WHERE id = {id}";
+                    using (SqlCommand checkCommand = new SqlCommand(checkQuery, connection))
+                    {
+                        // ExecuteScalar retrieves the count of tables with the given 'id'
+                        int existingCount = (int)checkCommand.ExecuteScalar();
+
+                        // If the table exists, update it; otherwise, insert a new table
+                        if (existingCount > 0)
+                        {
+                            // Construct and execute the UPDATE query
+                            string updateQuery = $"UPDATE dbo.game SET name = @Name, publisher = @Publisher, developer = @Developer, description = @Description, numPlayers = @NumPlayers, ageRating = @AgeRating, releaseDate = @ReleaseDate WHERE id = @ID";
+
+                            using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection))
+                            {
+                                // Set parameters for the UPDATE query
+                                updateCommand.Parameters.AddWithValue("@ID", id);
+                                updateCommand.Parameters.AddWithValue("@Name", name);
+                                updateCommand.Parameters.AddWithValue("@Publisher", publisher);
+                                updateCommand.Parameters.AddWithValue("@Developer", developer);
+                                updateCommand.Parameters.AddWithValue("@Description", description);
+                                updateCommand.Parameters.AddWithValue("@NumPlayers", numPlayers);
+                                updateCommand.Parameters.AddWithValue("@AgeRating", ageRating);
+                                updateCommand.Parameters.AddWithValue("@ReleaseDate", releaseDate);
+
+                                // Execute the UPDATE query
+                                updateCommand.ExecuteNonQuery();
+                            }
+                        }
+                        else
+                        {
+                            // Construct and execute the INSERT query
+                            string insertQuery = "INSERT INTO dbo.game (name, publisher, developer, description, numPlayers, ageRating, releaseDate) VALUES (@Name, @Publisher, @Developer, @Description, @NumPlayers, @AgeRating, @ReleaseDate)";
+
+                            using (SqlCommand insertCommand = new SqlCommand(insertQuery, connection))
+                            {
+                                // Set parameters for the INSERT query
+                                insertCommand.Parameters.AddWithValue("@Name", name);
+                                insertCommand.Parameters.AddWithValue("@Publisher", publisher);
+                                insertCommand.Parameters.AddWithValue("@Developer", developer);
+                                insertCommand.Parameters.AddWithValue("@Description", description);
+                                insertCommand.Parameters.AddWithValue("@NumPlayers", numPlayers);
+                                insertCommand.Parameters.AddWithValue("@AgeRating", ageRating);
+                                insertCommand.Parameters.AddWithValue("@ReleaseDate", releaseDate);
+
+                                // Execute the INSERT query
+                                insertCommand.ExecuteNonQuery();
+                            }
+                        }
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }*/
         }
 
 
@@ -105,12 +189,15 @@ namespace Domain_Models
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
-
+//                 case
+// when g.numberOfPlayers = 1 then 'Single Player'
+// when g.numberOfPlayers > 1 then 'Multi Player'
+// end as 
 
                 string getgameID = @"select g.name, g.description, gl.condition, g.releaseDate, g.numberOfPlayers,
-                g.ageRating, p.publisherName, dev.developerName, ge.genreName, gl.price, mingr.os as minOS, mingr.cpu as minCPU, mingr.ram as minRAM, 
-                mingr.gpu as minGPU, mingr.storage as minStorage, mingr.directX as minDirectX, maxgr.os as maxOS, maxgr.cpu as maxCPU, maxgr.ram as maxRam, maxgr.gpu as maxGPU, maxgr.storage as maxStorage, 
-                maxgr.directX as maxDirectX from [dbo].[GameListing] as gl 
+                g.ageRating, p.publisherName, dev.developerName, ge.genreName, gl.price, mingr.os, mingr.cpu, mingr.ram, 
+                mingr.gpu, mingr.storage, mingr.directX, maxgr.os, maxgr.cpu, maxgr.ram, maxgr.gpu, maxgr.storage, 
+                maxgr.directX from [dbo].[GameListing] as gl 
                 inner join [dbo].[Game] as g on gl.gameID = g.id 
                 inner join [dbo].[Publisher] as p on g.publisher = p.id 
                 inner join [dbo].[GameRequirements] as mingr on g.minRequirementsID = mingr.id 
@@ -139,8 +226,8 @@ namespace Domain_Models
                         game.publisher = (string)reader["publisherName"];
                         game.developer = (string)reader["developerName"];
                         game.genres = (string)reader["genreName"];
-                        game.minimumRequirements = new Requirements((string)reader["minOS"], (string)reader["minCPU"], (int)reader["minRAM"], (string)reader["minGPU"], (int)reader["minStorage"], (string)reader["minDirectX"]);
-                        game.recommendedRequirements = new Requirements((string)reader["maxOS"], (string)reader["maxCPU"], (int)reader["maxRAM"], (string)reader["maxGPU"], (int)reader["maxStorage"], (string)reader["maxDirectX"]);
+                        game.minimumRequirements = new Requirements((string)reader["os"], (string)reader["cpu"], (int)reader["ram"], (string)reader["gpu"], (int)reader["storage"], (string)reader["directX"]);
+                        game.recommendedRequirements = new Requirements((string)reader["os"], (string)reader["cpu"], (int)reader["ram"], (string)reader["gpu"], (int)reader["storage"], (string)reader["directX"]);
                     }
                 }
             }
