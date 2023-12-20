@@ -107,5 +107,32 @@ namespace Domain_Models
         }
 
 
+    public User GetUser(int userId){
+         User user = new User() {};
+            string ConnectionString = System.Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTIONSTRING");
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+
+                string getgameID = @"select username, city, zipcode, aboutMe from [dbo].[Users] where id = @userid";
+                using (SqlCommand command = new SqlCommand(getgameID, connection))
+                {
+                    command.Parameters.AddWithValue("@userid", userId);
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        user.username = (string)reader["username"];
+                        user.city = (string)reader["city"];
+                        user.zipCode = (int)reader["zipcode"];
+                        user.aboutMe = (string)reader["aboutMe"];
+                    }
+                }
+            }
+            return user;
+    }
+
     }
 }
