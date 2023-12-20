@@ -1,4 +1,6 @@
 @page "/"
+@page "/{search}"
+@inject NavigationManager MyNavigationManager
 @using Domain_Models.DataBase;
 @using Domain_Models;
 @using Microsoft.Data.SqlClient;
@@ -12,8 +14,10 @@
 {
     foreach (Seller seller in sellers)
     {
+        Debug.WriteLine($"listing ID: {listing.listingId}, SellerID: {seller.userId}");
         if (listing.sellerID == seller.userId)
         {
+            Debug.WriteLine($"display: listing with listing id = {listing.listingId}, seller id = {listing.sellerID} and sellers user id = {seller.userId}");
             <ShowGamelistings gameListing="listing" seller="seller" />
         }
     }
@@ -26,15 +30,26 @@
     GameListing displayListing = new GameListing();
     Seller seller = new Seller();
 
+    [Parameter]
+    public string? search { get; set; }
+
+
+    private void handleLocationChanged(object sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
+    {
+
+        makeLists();
+        this.StateHasChanged();
+    }
     void makeLists()
     {
-        gameListings = displayListing.GetGameListings();
-        sellers = seller.GetSellers();
+        gameListings = displayListing.GetGameListings(search);
+        sellers = seller.GetSellers(search);
     }
 
     protected override void OnInitialized()
     {
         makeLists();
+        MyNavigationManager.LocationChanged += handleLocationChanged;
     }
 
     protected override void OnAfterRender(bool firstRender)

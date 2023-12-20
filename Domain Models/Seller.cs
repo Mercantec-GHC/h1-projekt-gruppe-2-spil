@@ -1,6 +1,7 @@
 ﻿using Domain_Models.DataBase;
 using Microsoft.Data.SqlClient;
 using System.Diagnostics;
+using System.Linq;
 using System.Reflection;
 namespace Domain_Models;
 public class Seller : User
@@ -140,29 +141,44 @@ public class Seller : User
     }
 
 
-    public List<Seller> GetSellers()
+    public List<Seller> GetSellers(string searchTerm)
     {
         List<Seller> sellers = new List<Seller>();
+        Seller previousSeller = new Seller();
         string ConnectionString = System.Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTIONSTRING");
         using (SqlConnection connection = new SqlConnection(ConnectionString))
         {
             connection.Open();
 
-            string getgameID = "SELECT * FROM GameListing INNER JOIN Users on Users.id = GameListing.sellerID";
+            string getgameID = "SELECT * FROM Users INNER JOIN AsignUserToGroup on Users.id = AsignUserToGroup.userID";
             using (SqlCommand command = new SqlCommand(getgameID, connection))
             {
+                command.Parameters.AddWithValue("@title", "%" + searchTerm + "%");
                 SqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
+                    bool skip = false;
                     Seller seller = new Seller();
 
-
-                    seller.userId = (Int32)reader["sellerID"];
+                    seller.userId = (Int32)reader["id"];
                     seller.username = reader["username"].ToString();
                     seller.city = reader["city"].ToString();
+                    
+                    foreach(Seller sellerOnList in sellers)
+                    {
+                        if(sellerOnList.userId == seller.userId)
+                        {
+                            skip = true;
+                            break;
+                        }
+                    }
+                    if(skip == false)
+                    {
+                        sellers.Add(seller);
+                    }
+                    previousSeller = seller;
 
-                    sellers.Add(seller);
                 }
             }
         }
