@@ -108,9 +108,9 @@ namespace Domain_Models
 
 
                 string getgameID = @"select g.name, g.description, gl.condition, g.releaseDate, g.numberOfPlayers,
-                g.ageRating, p.publisherName, dev.developerName, ge.genreName, gl.price, mingr.os, mingr.cpu, mingr.ram, 
-                mingr.gpu, mingr.storage, mingr.directX, maxgr.os, maxgr.cpu, maxgr.ram, maxgr.gpu, maxgr.storage, 
-                maxgr.directX from [dbo].[GameListing] as gl 
+                g.ageRating, p.publisherName, dev.developerName, ge.genreName, gl.price, mingr.os as minOS, mingr.cpu as minCPU, mingr.ram as minRAM, 
+                mingr.gpu as minGPU, mingr.storage as minStorage, mingr.directX as minDirectX, maxgr.os as maxOS, maxgr.cpu as maxCPU, maxgr.ram as maxRam, maxgr.gpu as maxGPU, maxgr.storage as maxStorage, 
+                maxgr.directX as maxDirectX from [dbo].[GameListing] as gl 
                 inner join [dbo].[Game] as g on gl.gameID = g.id 
                 inner join [dbo].[Publisher] as p on g.publisher = p.id 
                 inner join [dbo].[GameRequirements] as mingr on g.minRequirementsID = mingr.id 
@@ -139,8 +139,8 @@ namespace Domain_Models
                         game.publisher = (string)reader["publisherName"];
                         game.developer = (string)reader["developerName"];
                         game.genres = (string)reader["genreName"];
-                        game.minimumRequirements = new Requirements((string)reader["os"], (string)reader["cpu"], (int)reader["ram"], (string)reader["gpu"], (int)reader["storage"], (string)reader["directX"]);
-                        game.recommendedRequirements = new Requirements((string)reader["os"], (string)reader["cpu"], (int)reader["ram"], (string)reader["gpu"], (int)reader["storage"], (string)reader["directX"]);
+                        game.minimumRequirements = new Requirements((string)reader["minOS"], (string)reader["minCPU"], (int)reader["minRAM"], (string)reader["minGPU"], (int)reader["minStorage"], (string)reader["minDirectX"]);
+                        game.recommendedRequirements = new Requirements((string)reader["maxOS"], (string)reader["maxCPU"], (int)reader["maxRAM"], (string)reader["maxGPU"], (int)reader["maxStorage"], (string)reader["maxDirectX"]);
                     }
                 }
             }
