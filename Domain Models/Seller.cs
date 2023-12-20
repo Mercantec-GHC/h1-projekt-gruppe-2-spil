@@ -141,10 +141,9 @@ public class Seller : User
     }
 
 
-    public List<Seller> GetSellers(string searchTerm)
+    public List<Seller> GetSellers()
     {
         List<Seller> sellers = new List<Seller>();
-        Seller previousSeller = new Seller();
         string ConnectionString = System.Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTIONSTRING");
         using (SqlConnection connection = new SqlConnection(ConnectionString))
         {
@@ -153,7 +152,6 @@ public class Seller : User
             string getgameID = "SELECT * FROM Users INNER JOIN AsignUserToGroup on Users.id = AsignUserToGroup.userID";
             using (SqlCommand command = new SqlCommand(getgameID, connection))
             {
-                command.Parameters.AddWithValue("@title", "%" + searchTerm + "%");
                 SqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
@@ -177,7 +175,6 @@ public class Seller : User
                     {
                         sellers.Add(seller);
                     }
-                    previousSeller = seller;
 
                 }
             }

@@ -14,10 +14,8 @@
 {
     foreach (Seller seller in sellers)
     {
-        Debug.WriteLine($"listing ID: {listing.listingId}, SellerID: {seller.userId}");
         if (listing.sellerID == seller.userId)
         {
-            Debug.WriteLine($"display: listing with listing id = {listing.listingId}, seller id = {listing.sellerID} and sellers user id = {seller.userId}");
             <ShowGamelistings gameListing="listing" seller="seller" />
         }
     }
@@ -43,7 +41,7 @@
     void makeLists()
     {
         gameListings = displayListing.GetGameListings(search);
-        sellers = seller.GetSellers(search);
+        sellers = seller.GetSellers();
     }
 
     protected override void OnInitialized()
