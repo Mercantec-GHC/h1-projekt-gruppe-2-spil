@@ -14,7 +14,7 @@ public class GameListing
     public List<string?> pictures { get; set; }
     public Game game { get; set; }
 
-    public List<GameListing> GetGameListings()
+    public List<GameListing> GetGameListings(string searchTerm)
     {
         List<GameListing> listings = new List<GameListing>();
         string ConnectionString = System.Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTIONSTRING");
@@ -22,9 +22,10 @@ public class GameListing
         {
             connection.Open();
 
-            string getgameID = "SELECT * FROM GameListing INNER JOIN Users on Users.id = GameListing.sellerID";
+            string getgameID = "SELECT * FROM GameListing INNER JOIN Users on Users.id = GameListing.sellerID WHERE GameListing.title LIKE @title";
             using (SqlCommand command = new SqlCommand(getgameID, connection))
             {
+                command.Parameters.AddWithValue("@title", "%" + searchTerm + "%");
                 SqlDataReader reader = command.ExecuteReader();
                     
                 while (reader.Read())
