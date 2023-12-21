@@ -27,7 +27,7 @@ public class GameListing
                                 INNER JOIN Game on GameListing.gameID = Game.id
                                 INNER JOIN assignGenreToGame on GameListing.gameID = assignGenreToGame.gameID 
                                 INNER JOIN Genre on Genre.id = assignGenreToGame.genreID 
-                                WHERE GameListing.title LIKE '%' AND YEAR(Game.releaseDate) >= @year AND Genre.GenreName LIKE @genre";
+                                WHERE GameListing.title LIKE @title AND YEAR(Game.releaseDate) >= @year AND Genre.GenreName LIKE @genre";
             using (SqlCommand command = new SqlCommand(getgameID, connection))
             {
                 command.Parameters.AddWithValue("@title", "%" + searchTerm + "%");
